@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 Platform Quarter Project Plan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Energetic & Playful (Inspired by Blues, Greens, Oranges) -->
+    <!-- Application Structure Plan: The application is designed as a single, scrollable webpage with a fixed sidebar navigation. The sidebar provides quick links to the 'Introduction', 'Revenue Plan', 'NM Movement', and each of the six consolidated project focus areas. The main content area displays the Dashboard first, followed by distinct sections for each focus area. Within each focus area section, projects are presented as visually enhanced cards, grouped by priority. This structure offers continuous scrolling for detailed exploration while the sidebar allows for rapid jumps between major sections, enhancing user navigation and overall usability. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: High-level summary (total projects, high-priority, owners). -> Goal: Inform. -> Viz/Presentation: Enhanced KPI Cards with vibrant borders. -> Interaction: Static. -> Justification: Provides immediate, impactful, and visually appealing summary statistics at the top of the page. -> Method: HTML/Tailwind.
+        - Report Info: Project distribution by 6 consolidated focus areas. -> Goal: Inform/Compare. -> Viz/Presentation: Donut Chart (on Dashboard). -> Interaction: Tooltips. -> Justification: Visually shows resource allocation across the exact, limited set of strategic areas for a quick overview. -> Library/Method: Chart.js (Canvas).
+        - Report Info: Projects per owner (now by team). -> Goal: Compare/Rank. -> Viz/Presentation: Horizontal Bar Chart (on Dashboard). -> Interaction: Tooltips. -> Justification: Highlights team contributions and workload with a cleaner bar style, visible upfront. -> Library/Method: Chart.js (Canvas).
+        - Report Info: Revenue numbers (NMV, Growth). -> Goal: Inform/Change. -> Viz/Presentation: Detailed Tables with enhanced monthly borders and Q1 on left. -> Interaction: Static. -> Justification: Presents financial data clearly with improved readability and logical flow. -> Method: HTML/Tailwind.
+        - Report Info: Revenue Growth Scenarios. -> Goal: Compare/Inform. -> Viz/Presentation: Combo Chart (Bar for Revenue, Line for Growth %). -> Interaction: Tooltips. -> Justification: Provides a dynamic visual comparison of potential QoQ growth outcomes and associated revenue for different achievement levels. -> Library/Method: Chart.js (Canvas).
+        - Report Info: NM% and Discount% movement. -> Goal: Inform/Change. -> Viz/Presentation: Bar Chart for NM% Q1/Q2 comparison and Line Chart for Discount% (June-Sep). -> Interaction: Tooltips. -> Justification: Offers more engaging visual comparisons of key profitability drivers and trends. -> Library/Method: Chart.js (Canvas).
+        - Report Info: Projects by Project Level and Team. -> Goal: Organize/Compare. -> Viz/Presentation: Detailed Table. -> Interaction: Static. -> Justification: Provides a structured overview of project distribution across teams and project types. -> Method: HTML/Tailwind.
+        - Report Info: Detailed project information. -> Goal: Organize/Inform. -> Viz/Presentation: Project Cards with enhanced styling, subtle hover effects, and clear priority indicators. -> Interaction: Scrolling. -> Justification: Presents all project details in an organized, readable format within their respective consolidated sections, allowing for continuous exploration. -> Method: HTML/Tailwind.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9; /* Light slate background for depth */
+            color: #1e293b; /* Dark slate text */
+        }
+        .header-bg {
+            background: linear-gradient(to right, #0ea5e9, #3b82f6); /* Gradient blue */
+        }
+        
+        .priority-p0 { border-left-color: #ef4444; /* red-500 */ }
+        .priority-p1 { border-left-color: #f59e0b; /* amber-500 */ }
+        .priority-p2 { border-left-color: #3b82f6; /* blue-500 */ }
+        .priority-none { border-left-color: #64748b; /* slate-500 */ } /* Adjusted for better contrast */
+
+        .kpi-card { 
+            background-color: #ffffff; 
+            border-radius: 0.75rem; 
+            padding: 1.5rem; 
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); /* Stronger shadow */
+            text-align: center; 
+            border-bottom: 5px solid; /* Thicker border */
+            transition: transform 0.2s ease-in-out;
+        }
+        .kpi-card:hover {
+            transform: translateY(-5px); /* Lift on hover */
+        }
+        .chart-container { 
+            position: relative; 
+            width: 100%; 
+            height: 350px; 
+            max-height: 400px; 
+            background-color: white; 
+            padding: 1.5rem; /* Increased padding */
+            border-radius: 0.75rem; /* More rounded */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); /* Stronger shadow */
+        }
+        @media (min-width: 768px) { .chart-container { height: 400px; } }
+
+        .project-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            border-left: 5px solid; /* Thicker left border */
+        }
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        .sidebar-link {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.2s ease-in-out;
+            font-weight: 500;
+        }
+        .sidebar-link:hover, .sidebar-link.active {
+            background-color: #374151; /* gray-700 */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+            background-color: white;
+            border-radius: 0.5rem;
+            overflow: hidden; /* Ensures rounded corners apply to table content */
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        th, td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0; /* slate-200 */
+            text-align: left;
+        }
+        th {
+            background-color: #f8fafc; /* slate-50 */
+            font-weight: 600;
+            color: #475569; /* slate-600 */
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        .highlight-row {
+            background-color: #e0f2fe; /* blue-50 */
+            font-weight: 600;
+        }
+        .text-right {
+            text-align: right;
+        }
+        .month-border-right {
+            border-right: 2px solid #cbd5e1; /* slate-300 */
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar Navigation -->
+        <aside class="w-64 bg-slate-800 text-white flex-shrink-0 p-4 sticky top-0 h-screen overflow-y-auto">
+            <h1 class="text-2xl font-bold mb-6 border-b border-slate-600 pb-4">📊 Platform Plan</h1>
+            <nav id="sidebar-nav">
+                <a href="#intro-page" class="sidebar-link active">Introduction</a>
+                <a href="#revenue-plan" class="sidebar-link">Revenue Plan</a>
+                <a href="#nm-movement" class="sidebar-link">NM Movement</a>
+                <a href="#nm-improvement-reasons" class="sidebar-link">NM Improvement Reasons</a>
+                <a href="#dashboard" class="sidebar-link">Dashboard</a>
+                <a href="#growth-category" class="sidebar-link">Growth</a>
+                <a href="#efficiency-category" class="sidebar-link">Efficiency</a>
+                <a href="#category-expansion-category" class="sidebar-link">Category Expansion</a>
+                <a href="#ai-category" class="sidebar-link">AI</a>
+                <a href="#profitability-category" class="sidebar-link">Profitability</a>
+                <a href="#qcomm-category" class="sidebar-link">Qcomm</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area - Single Scrollable Page -->
+        <main class="flex-grow p-6 md:p-8 bg-slate-50">
+            <div class="max-w-7xl mx-auto">
+
+                <!-- Header (Moved inside main content for consistent max-width) -->
+                <header class="text-center mb-16">
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-slate-800 leading-tight">
+                        Platform Quarter<span class="text-sky-500">.</span> Project Plan<span class="text-amber-500">.</span>
+                    </h1>
+                    <p class="text-slate-600 text-xl font-medium mt-2 md:mt-0 max-w-2xl mx-auto">Interactive Overview of Strategic Initiatives</p>
+                </header>
+
+                <!-- Intro Page -->
+                <section id="intro-page" class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">Introduction</h2>
+                    <p class="text-slate-600 mb-8">This document provides a comprehensive overview of the Platform Quarter Project Plan. It outlines our strategic objectives, key revenue targets, and detailed project initiatives across various focus areas. Our goal is to ensure transparency, alignment, and efficient execution throughout the quarter.</p>
+                    <p class="text-slate-600">Explore the sections below to understand our financial projections, operational improvements, and specific project breakdowns.</p>
+                </section>
+
+                <!-- Revenue Plan Numbers -->
+                <section id="revenue-plan" class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">Revenue Plan Numbers (NMV & Growth)</h2>
+                    <p class="text-slate-600 mb-8">Detailed Net Merchandise Value (NMV) and Growth percentages across different segments for the current and upcoming quarters.</p>
+                    <div id="revenue-plan-table-container"></div>
+
+                    <h3 class="text-2xl font-bold text-slate-900 mt-12 mb-4">Revenue Plan Growth Scenarios</h3>
+                    <p class="text-slate-600 mb-8">Projected total NMV if we achieve different percentages of our Q2FY26 plan. Our 100% plan target for Q2FY26 Total NMV is <span id="base-nmv" class="font-semibold text-blue-600"></span>.</p>
+                    <div class="chart-container mx-auto max-w-2xl">
+                        <canvas id="revenueScenarioChart"></canvas>
+                    </div>
+                </section>
+
+                <!-- NM Movement -->
+                <section id="nm-movement" class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">NM Movement & Discount Analysis</h2>
+                    <p class="text-slate-600 mb-8">Analysis of Net Margin (NM%) and Discount percentages over recent months, highlighting key trends and movements.</p>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="chart-container">
+                            <h3 class="text-lg font-semibold mb-3 text-slate-800">NM% Q1 vs Q2 Comparison</h3>
+                            <canvas id="nmComparisonChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                             <h3 class="text-lg font-semibold mb-3 text-slate-800">Discount% (June - Sep)</h3>
+                            <canvas id="discountTrendChart"></canvas>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Reason for NM Improvement -->
+                <section id="nm-improvement-reasons" class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">Reasons for NM Improvement</h2>
+                    <p class="text-slate-600 mb-8">Key factors contributing to the improvement in Net Margin (NM%) as observed in our recent performance.</p>
+                    <ul class="list-disc list-inside text-slate-700 space-y-2">
+                        <li><strong>Discount Reduction:</strong> Strategic initiatives to reduce overall discount percentages.</li>
+                        <li><strong>Increase in VAS (Value Added Services):</strong> Enhanced focus and growth in value-added services.</li>
+                        <li><strong>Increase in NF Salience:</strong> Growing prominence and sales of Non-Food categories.</li>
+                    </ul>
+                </section>
+
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">Quarter Dashboard</h2>
+                    <p class="text-slate-600 mb-8">A high-level overview of all planned projects for the Platform quarter, providing quick insights into our strategic focus and team contributions.</p>
+                    
+                    <!-- KPI Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+                        <div class="kpi-card border-sky-500">
+                            <h3 class="text-slate-500 text-sm font-medium">Total Projects</h3>
+                            <p id="total-projects-kpi" class="text-5xl font-extrabold text-sky-600 mt-2">0</p>
+                        </div>
+                        <div class="kpi-card border-red-500">
+                            <h3 class="text-slate-500 text-sm font-medium">High-Priority (P0) Projects</h3>
+                            <p id="p0-projects-kpi" class="text-5xl font-extrabold text-red-600 mt-2">0</p>
+                        </div>
+                        <div class="kpi-card border-green-500">
+                            <h3 class="text-slate-500 text-sm font-medium">Unique Teams Leading</h3>
+                            <p id="total-owners-kpi" class="text-5xl font-extrabold text-green-600 mt-2">0</p>
+                        </div>
+                    </div>
+
+                    <!-- Charts -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="chart-container">
+                            <h3 class="text-lg font-semibold mb-3 text-slate-800">Projects by Focus Area</h3>
+                            <canvas id="focusAreaChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                             <h3 class="text-lg font-semibold mb-3 text-slate-800">Projects by Team</h3>
+                            <canvas id="ownerChart"></canvas>
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl font-bold text-slate-900 mt-12 mb-4">Projects by Level and Team</h3>
+                    <p class="text-slate-600 mb-8">A detailed breakdown of project distribution across different project levels (Large, BAU++, BAU) and the teams responsible for them.</p>
+                    <div id="projects-by-level-team-table-container"></div>
+                </section>
+
+                <!-- Growth Section -->
+                <section id="growth-category" class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">Growth</h2>
+                    <p class="text-slate-600 mb-8">This section outlines projects focused on expanding market presence, launching new brands and products, and driving overall revenue growth and user acquisition.</p>
+                    <div id="projects-growth-category" class="space-y-6"></div>
+                </section>
+
+                <!-- Efficiency Section -->
+                <section id="efficiency-category" class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">Efficiency</h2>
+                    <p class="text-slate-600 mb-8">Projects dedicated to streamlining operations, enhancing platform performance, improving internal processes, and ensuring data hygiene for optimal productivity.</p>
+                    <div id="projects-efficiency-category" class="space-y-6"></div>
+                </section>
+
+                <!-- Category Expansion Section -->
+                <section id="category-expansion-category" class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">Category Expansion</h2>
+                    <p class="text-slate-600 mb-8">Initiatives aimed at broadening our product categories, increasing assortment, and refining merchandising strategies to enhance product discovery and appeal.</p>
+                    <div id="projects-category-expansion-category" class="space-y-6"></div>
+                </section>
+
+                <!-- AI Section -->
+                <section id="ai-category" class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">AI</h2>
+                    <p class="text-slate-600 mb-8">Projects leveraging Artificial Intelligence for data extraction, product detail enrichment, merchandising automation, and other innovative applications to drive business value.</p>
+                    <div id="projects-ai-category" class="space-y-6"></div>
+                </section>
+
+                <!-- Profitability Section -->
+                <section id="profitability-category" class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">Profitability</h2>
+                    <p class="text-slate-600 mb-8">Projects focused on optimizing pricing strategies, managing coupons and bank discounts, refining product positioning, and conducting in-depth AOV analysis to maximize financial returns.</p>
+                    <div id="projects-profitability-category" class="space-y-6"></div>
+                </section>
+
+                <!-- Qcomm Section -->
+                <section id="qcomm-category" class="mb-12">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">Qcomm</h2>
+                    <p class="text-slate-600 mb-8">Projects related to quick commerce, including regional pricing capabilities, optimizing offline pricing, and streamlining coupon creation and go-live processes for rapid market response.</p>
+                    <div id="projects-qcomm-category" class="space-y-6"></div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+<script>
+// Helper function to extract first name
+function getFirstName(fullName) {
+    if (!fullName) return '';
+    return fullName.split(' ')[0];
+}
+
+// Helper function to determine priority class for styling
+function getPriorityClass(priority) {
+    switch (priority) {
+        case 'P0': return 'border-red-500';
+        case 'P1': return 'border-amber-500';
+        case 'P2': return 'border-blue-500';
+        default: return 'border-slate-500';
+    }
+}
+
+// Helper function to get priority badge text
+function getPriorityBadge(priority) {
+    if (!priority) return '';
+    const baseClass = 'text-xs font-semibold px-2.5 py-0.5 rounded-full';
+    switch (priority) {
+        case 'P0': return `<span class="bg-red-100 text-red-800 ${baseClass}">Project</span>`;
+        case 'P1': return `<span class="bg-amber-100 text-amber-800 ${baseClass}">Bau++</span>`;
+        case 'P2': return `<span class="bg-blue-100 text-blue-800 ${baseClass}">Bau</span>`;
+        default: return '';
+    }
+}
+
+// Map project types to priorities for consistent display/filtering
+function mapTypeToPriority(type, existingPriority) {
+    if (existingPriority) return existingPriority;
+    if (type === 'Large' || type === 'Expansion') return 'P0';
+    if (type === 'BAU++') return 'P1';
+    if (type === 'BAU+') return 'P2';
+    return '';
+}
+
+// IMPORTANT: New mapping function to consolidate original focusArea into the 6 requested categories
+function getConsolidatedCategory(project) {
+    const originalFocusArea = project.focusArea;
+
+    if (originalFocusArea === 'Growth') return 'Growth';
+    if (originalFocusArea === 'Efficiency') return 'Efficiency';
+    if (originalFocusArea === 'Category expansion') return 'Category Expansion';
+    if (originalFocusArea === 'AI') return 'AI';
+    if (originalFocusArea === 'Profitability') return 'Profitability';
+    if (originalFocusArea === 'Qcomm') return 'Qcomm';
+    if (originalFocusArea === 'Pricing') return 'Profitability'; // Explicitly map 'Pricing' focusArea to 'Profitability'
+
+    // Fallback for any unmapped or new focus areas
+    return 'Growth'; // Default to Growth if no clear mapping
+}
+
+// Function to map original team/owners to a consolidated displayTeam
+function getDisplayTeam(project) {
+    // Prioritize explicit team field if it's a specific team
+    if (project.team && !['Platform', 'Data', 'Small Animals', 'Fresh food', 'Non food'].includes(project.team)) {
+        return project.team; // e.g., 'Dog food', 'Cat food', 'Merch', 'Pricing', 'Qcomm', 'Henlo'
+    }
+
+    // Map based on owner names if team is generic or missing
+    const ownerNames = project.owners.map(getFirstName);
+    if (ownerNames.includes('Fahim') || ownerNames.includes('Manish') || ownerNames.includes('Altaf') || ownerNames.includes('Rinu') || ownerNames.includes('Nandish')) {
+        // These owners are often associated with 'Platform' or general strategic roles
+        if (project.focusArea === 'Growth' || project.focusArea === 'Efficiency' || project.focusArea === 'Profitability') {
+            return 'Platform';
+        }
+    }
+    if (ownerNames.includes('Amarnath')) return 'Category Expansion'; // Primary for Fresh Food/Small Animals/Category Expansion
+    if (ownerNames.includes('Yash') || ownerNames.includes('Samriddha') || ownerNames.includes('Archanna') || ownerNames.includes('Anupama') || ownerNames.includes('Vinay')) return 'Merch';
+    if (ownerNames.includes('Prince') || ownerNames.includes('Bhavya')) return 'Pricing';
+    if (ownerNames.includes('Stalin') || ownerNames.includes('Anoushka')) return 'Henlo';
+    if (ownerNames.includes('John')) return 'User Experience'; // Specific to UX/Conversion
+
+    // Fallback based on focusArea if no specific owner or team
+    if (project.focusArea === 'AI') return 'AI';
+    if (project.focusArea === 'Profitability') return 'Profitability';
+    if (project.focusArea === 'Qcomm') return 'Qcomm';
+    if (project.focusArea === 'Category expansion') return 'Category Expansion';
+    if (project.focusArea === 'Growth') return 'Growth';
+    if (project.focusArea === 'Efficiency') return 'Efficiency';
+
+    // Ultimate fallback if no other rule applies
+    return 'Cross-Functional';
+}
+
+
+// All project data, combined and cleaned from both CSVs, with first names for owners.
+// Each project now also has a 'consolidatedCategory' property for the donut chart and tab mapping.
+const projectData = [
+    // Projects from the first set (from previous turns) - manually cleaned and confirmed
+    { project: 'New brand launch and scale - HUFT, Activ', owners: ['Manish D\'souza'], team: 'Dog food', focusArea: 'Growth', type: 'BAU++', priority: 'P0', status: '', notes: '' },
+    { project: 'New brand launch and scale - HUFT, Avanti, Smylo, Sheba Soup', owners: ['Fahim Shoukath'], team: 'Cat food', focusArea: 'Growth', type: 'BAU++', priority: 'P0', status: '', notes: '' },
+    { project: 'Take up segment based pinning feature in Unbxd', owners: ['Manish D\'souza'], team: 'Platform', focusArea: 'Efficiency', type: 'BAU+', priority: 'P1', status: '', notes: '' },
+    { project: 'Creating a better user experience via accuate and relevant filters while improving the brand , SKU and category coverage.', owners: ['Rinu Annie Sunny'], team: 'Platform', focusArea: 'Efficiency', type: 'BAU+', priority: 'P2', status: '', notes: 'Phase 1 - Dog dry, Cat dry and Cat wet\nPhase 2 - Dog treats, Dog wet and Cat treats' },
+    { project: 'SWAG 2025 - Ideation, Planning and Execution', owners: ['Altaf Sayed', 'Manish D\'souza'], team: 'Platform', focusArea: 'Growth', type: 'BAU++', priority: 'P0', status: '', notes: '' },
+    { project: 'Increase attach rates of IPA projects and AOV. Calendarise regional IPA through', owners: ['Fahim Shoukath', 'Manish D\'souza'], team: 'Platform', focusArea: 'Efficiency', type: 'BAU+', priority: 'P0', status: '', notes: '- Product finalization \n- Calendar planning\n- performance check' },
+    { project: 'Assortment expansion through new brand listing across top 6 categories based on', owners: ['Lavanya D', 'Rinu Annie Sunny', 'Amarnath A'], team: 'Platform', focusArea: 'Growth', type: 'BAU+', priority: 'P1', status: '', notes: 'i) retail market survey\nii) Amazon assortment gap analysis' },
+    { project: 'Acqusition growth QoQ by 16%', owners: ['Fahim Shoukath'], team: 'Cat food', focusArea: 'Growth', type: 'BAU+', priority: 'P0', status: '', notes: '- Specific landing pages based on keywords\n- Hooks for better convertion\n- Focus on Sheba, Royal Canin, Farmina and Nestle' },
+    { project: 'Acqusition growth QoQ by 25%', owners: ['Manish D\'souza'], team: 'Dog food', focusArea: 'Growth', type: 'BAU+', priority: 'P0', status: '', notes: '- Landing pages based on keywords and search keywords\n- Hooks for better convertion\n- Segregation and brands based on premium, mid premium and economic \n- Campain to be planned with budget and assets' },
+    { project: 'Increase cat food category awareness', owners: ['Rinu Annie Sunny'], team: 'Dog food', focusArea: 'Growth', type: 'BAU+', priority: 'P0', status: '', notes: '- Festive based video assets and content creation\n- Distribution off-platform on Meta and on-platform videos\n- Best-seller product discount strategy\n- Weekend tactical sales\n- Platform creatve update (use videos and Gifs)' },
+    { project: 'Increase cat food category awareness', owners: ['Lavanya D'], team: 'Dog food', focusArea: 'Growth', type: 'BAU+', priority: 'P1', status: '', notes: '- Festive based video assets and content creation\n- Distribution off-platform on Meta and on-platform videos\n- Best-seller product discount strategy\n- Weekend tactical sales\n- Platform creatve update (use videos and Gifs)' },
+    { project: 'Cat food challenger brands growth', owners: ['Fahim Shoukath', 'Rinu Annie Sunny'], team: 'Dog food', focusArea: 'Growth', type: 'BAU+', priority: 'P0', status: '', notes: '- Sheba\n- Friskies\n- Signature\n- Carniwel\n- Purrfeto\n- Meowsi' },
+    { project: 'Dog food challenger brands growth', owners: ['Manish D\'souza', 'Lavanya D'], team: 'Dog food', focusArea: 'Growth', type: 'BAU+', priority: 'P0', status: '', notes: '- HUFT\n- Pro plan\n- Kennel Kitchen\n- Carniwel\n- Petstar\n- Jerhigh\n- Bowlers' },
+    { project: 'Finalise the ground work for Fresh Food category launch', owners: ['Amarnath A'], team: 'Fresh food', focusArea: 'Category expansion', type: 'Large', priority: 'P0', status: '', notes: '- Vendor look-out\n- Explore supply chain network and storage\n- Explore product listing challenges\n- P&L and margins' },
+    { project: 'Category creation', owners: ['Amarnath A'], team: 'Small Animals', focusArea: 'Growth', type: 'Large', priority: 'P1', status: '', notes: '- Assortment increase\n- New collection page\n- Category & Brand filters\n- Getting the inventory aligned\n- Execute promotional campaigns' },
+    { project: 'Sale Perception Builder', owners: ['Yash Srivastava'], team: 'Merch', focusArea: 'Efficiency', type: 'BAU+', priority: 'P0', status: '', notes: '- BBB Clearance Sale\n- Now or Never Month End Sale (every month)\n- Weekend Flash Sales' },
+    { project: 'Page Revamps', owners: ['Samriddha Baruah'], team: 'Merch', focusArea: 'Efficiency', type: 'Large', priority: 'P0', status: '', notes: '- Clothing (IP)\n- Luxe (TBP)\n- Seasonal (Done)\n-Litter (Done)\n- Treats (Done)' },
+    { project: 'New Pages to be introduced', owners: ['Archanna vaithiyanathan'], team: 'Merch', focusArea: 'Efficiency', type: 'Large', priority: 'P1', status: '', notes: '- HUFT\n- Best Sellers\n- Rakhi LP\n- Indipendence Day\n- Pet Parents' },
+    { project: 'Brand & Category Sales across month', owners: ['Samriddha Baruah', 'Anupama Anand', 'Archanna vaithiyanathan'], team: 'Merch', focusArea: 'Growth', type: 'BAU+', priority: 'P1', status: '', notes: '- Royal Canin & Nestle Sale (TBP)\n- Grooming\n- Treats' },
+    { project: 'Merch + Catalog Processes', owners: ['Vinay G', 'Anupama A'], team: 'Merch', focusArea: 'AI', type: 'Large', priority: 'P1', status: '', notes: '- Figma Buzz for merch design automations\n- AI Automation from merch sheet to uploads\n- NPI Sheets across categories\n- Process set-up & alignments\n- New image generation and automatic uploads.' },
+    { project: 'Increase Sampling across platform', owners: ['Anupama Anand', 'Archanna vaithiyanathan'], team: 'Merch', focusArea: 'Growth', type: '', priority: 'P2', status: '', notes: '' },
+    { project: 'SWAG 2025 - Ideation, Planning and Execution', owners: ['Yash Srivastava'], team: 'Merch', focusArea: 'Growth', type: '', priority: 'P0', status: ''},
+    { project: 'Merch X Product fixes', owners: ['Yash Srivastava'], team: 'Merch', focusArea: 'Efficiency', type: '', priority: 'P0', status: '', notes: '- Priorities set (Before Swag / After Swag)\n- Align product on the efficiency of widgets' },
+    { project: 'Zepto Sticky Brand of the Day', owners: ['Yash Srivastava'], team: 'Merch', focusArea: 'Efficiency', type: '', priority: 'P0', status: '', notes: '- Designs aligned\n- Status of development to be checked' },
+    { project: 'App Header', owners: ['Yash Srivastava'], team: 'Merch', focusArea: 'Efficiency', type: '', priority: 'P1', status: ''},
+    { project: 'Filters Coverage + Impact + Additions + Tracking', owners: ['Anupama Anand'], team: 'Merch', focusArea: 'Efficiency', type: 'Large', priority: 'P0', status: '', notes: '- New Launch + Best sellers + Age specific (NF)\n- 50% coverage\n- 75% coverage\n- 100% coverage' },
+    { project: 'Implementation of affinity for post ATC recommendation. Set up tracking and category calendar', owners: ['Nandish S'], team: 'Platform', focusArea: 'Efficiency', type: 'BAU+', priority: 'P1', status: '', notes: '' },
+    { project: 'Create rules for last min add-ons and improve', owners: ['Nandish S'], team: 'Platform', focusArea: 'Growth', type: 'BAU+', priority: 'P1', status: '', notes: '' },
+    { project: 'New recommendation asset to be created for cart level cross-brand recommendations', owners: ['Nandish S'], team: 'Platform', focusArea: 'Growth', type: 'BAU+', priority: 'P1', status: '', notes: '' },
+    { project: 'Launch of Pet parent category', owners: ['Altaf Sayed'], team: 'Non food', focusArea: 'Growth', type: 'Large', priority: 'P0', status: '', notes: '' },
+    { project: 'Coupons Hyper- Personalization- Rule/Framework', owners: ['Prince Aditya Bharati'], team: 'Pricing', focusArea: 'Profitability', type: 'BAU+', priority: 'P2', status: '', notes: '' },
+    { project: 'Incentivise cross sell to specific cohorts in the User POD', owners: ['Prince Aditya Bharati'], team: 'Platform', focusArea: 'Profitability', type: 'BAU++', priority: 'P0', status: ''},
+    { project: 'Autobuy Framework\ni) Customer flow\nii) Inventory flow (product + ops)\niii) Discounting\niv) Co-ordination with product team', owners: ['Prince Aditya Bharati'], team: 'Pricing', focusArea: 'AI', type: 'Large', priority: 'P2', status: '', notes: '' },
+    { project: 'Automate pricing day to day tasks\ni) Preparation of pricing file using Amazon price match\nii) Laddering in combo pricing\niii) Near expiry prices\niv) Constrain SKU check', owners: ['Prince Aditya Bharati'], team: 'Pricing', focusArea: 'AI', type: 'Large', priority: 'P0', status: '', notes: '' },
+    { project: 'Non food best seller SKU level pricing index + guidelines', owners: ['Bhavya S'], team: 'Pricing', focusArea: 'Profitability', type: 'BAU++', priority: 'P0', status: '', notes: '' },
+    { project: 'Determine regional pricing capabilities in-line with the local retailer and e-comm channels.\n- Lead discussions with product\n- Set up pin code level pricing capabilities \n- Set up pin code level couponing', owners: ['Prince Aditya Bharati'], team: 'Qcomm', focusArea: 'Qcomm', type: 'Large', priority: 'P1', status: '', notes: '' },
+    { project: 'Figure out a way to get offline pricing', owners: ['Prince Aditya Bharati'], team: 'Pricing', focusArea: 'Qcomm', type: 'Large', priority: 'P1', status: '', notes: '' },
+    { project: 'Cut down the time of coupon creation and go-live by 80% via web application', owners: ['Prince Aditya Bharati'], team: 'Pricing', focusArea: 'Efficiency', type: 'BAU+', priority: 'P0', status: '', notes: '' },
+    { project: 'Volume Based Discounting - Framework & Go Live', owners: ['Prince Aditya Bharati'], team: 'Pricing', focusArea: 'Growth', type: 'BAU++', priority: 'P1', status: '', notes: '' },
+    { project: 'JUSPAY - Bank Coupons Framework and Go Live', owners: ['Prince Aditya Bharati'], team: 'Pricing', focusArea: 'Profitability', type: 'BAU++', priority: 'P1', status: '', notes: '' },
+    { project: 'Set up EDD scraping index in top 10 cities', owners: ['Prince Aditya Bharati'], team: 'Pricing', focusArea: 'Growth', type: 'BAU++', priority: 'P2', status: '', notes: '' },
+    { project: 'SWAG 5 discounting and pricing. Run 5 key experiments on pricing during SWAG', owners: ['Bhavya S'], team: 'Pricing', focusArea: 'Growth', type: 'BAU+', priority: 'P0', status: '', notes: '' },
+    { project: 'Clinic - Products - Pricing Check', owners: ['Bhavya S'], team: 'Pricing', focusArea: 'Profitability', type: 'BAU++', priority: 'P1', status: '', notes: ''},
+    { project: 'Fish category creation and expansion\n- Assortment increase\n- Dedicated collections\n- Customr acqusition and promotional campaigns', owners: ['Amarnath A'], team: 'Small Animals', focusArea: 'Growth', type: 'BAU+', priority: 'P1', status: '', notes: '' }
+];
+
+// Add consolidatedCategory and displayTeam to each project
+projectData.forEach(p => {
+    p.consolidatedCategory = getConsolidatedCategory(p);
+    p.displayTeam = getDisplayTeam(p);
+});
+
+// Deduplicate projectData based on project name
+const uniqueProjectData = [];
+const seenProjects = new Set();
+projectData.forEach(p => {
+    const projectIdentifier = `${p.project}-${p.owners.map(getFirstName).join(',')}`;
+    if (!seenProjects.has(projectIdentifier)) {
+        uniqueProjectData.push(p);
+        seenProjects.add(projectIdentifier);
+    }
+});
+
+// Replace projectData with the deduplicated array
+projectData.splice(0, projectData.length, ...uniqueProjectData);
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    
+    let chartInstances = {}; // To store Chart.js instances for destruction on tab switch
+
+    // Define the class string once to avoid parsing issues
+    const monthBorderRightClass = "month-border-right";
+
+    // Function to render project cards for a given section
+    function renderProjectCards(sectionId, projects) {
+        const container = document.getElementById(`projects-${sectionId}`);
+        if (!container) return; // Exit if container doesn't exist for this section
+        container.innerHTML = ''; // Clear previous content
+
+        const priorities = ['P0', 'P1', 'P2', '']; // Order of priorities
+        const priorityTitles = {
+            'P0': 'High Priority (Project)',
+            'P1': 'Medium Priority (Bau++)',
+            'P2': 'Low Priority (Bau)',
+            '': 'Other Initiatives'
+        };
+
+        priorities.forEach(prio => {
+            const projectsInPriority = projects.filter(p => {
+                const effectivePriority = mapTypeToPriority(p.type, p.priority);
+                return effectivePriority === prio;
+            });
+
+            if (projectsInPriority.length > 0) {
+                const prioritySection = document.createElement('div');
+                prioritySection.className = 'mb-6';
+                prioritySection.innerHTML = `<h3 class="text-2xl font-semibold text-slate-700 mb-4">${priorityTitles[prio]}</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>`;
+                const gridContainer = prioritySection.querySelector('div');
+
+                projectsInPriority.forEach(p => {
+                    const card = document.createElement('div');
+                    const effectivePriority = mapTypeToPriority(p.type, p.priority);
+                    card.className = `project-card rounded-lg shadow-md border-l-4 p-4 ${getPriorityClass(effectivePriority)}`;
+                    
+                    card.innerHTML = `
+                        <div class="flex justify-between items-start">
+                            <h4 class="font-bold text-base text-slate-900">${p.project}</h4>
+                            <div>${getPriorityBadge(effectivePriority)}</div>
+                        </div>
+                        <p class="text-sm text-slate-500 mt-1"><strong>Team:</strong> ${getDisplayTeam(p)}</p>
+                        ${p.owners && p.owners.length > 0 ? `<p class="text-sm text-slate-500 mt-1"><strong>Owner(s):</strong> ${p.owners.map(getFirstName).join(', ')}</p>` : ''}
+                        ${p.type ? `<p class="text-sm text-slate-500"><strong>Type:</strong> ${p.type}</p>` : ''}
+                        ${p.status ? `<p class="text-sm text-slate-500"><strong>Status:</strong> ${p.status}</p>` : ''}
+                        ${p.notes ? `<p class="text-sm text-slate-600 mt-2">${p.notes}</p>` : ''}
+                    `;
+                    gridContainer.appendChild(card);
+                });
+                container.appendChild(prioritySection);
+            }
+        });
+    }
+
+    // KPI Update
+    function updateKPIs() {
+        document.getElementById('total-projects-kpi').textContent = projectData.length;
+        document.getElementById('p0-projects-kpi').textContent = projectData.filter(p => mapTypeToPriority(p.type, p.priority) === 'P0').length;
+        const uniqueTeams = new Set(projectData.map(getDisplayTeam));
+        document.getElementById('total-owners-kpi').textContent = uniqueTeams.size;
+    }
+
+    // Chart rendering for Dashboard
+    function renderFocusAreaChart() {
+        const ctx = document.getElementById('focusAreaChart').getContext('2d');
+        
+        // Group projects by the new 6 consolidated chart categories
+        const focusAreaData = projectData.reduce((acc, p) => {
+            const chartCategory = getConsolidatedCategory(p); // Use the new consolidated category
+            acc[chartCategory] = (acc[chartCategory] || 0) + 1;
+            return acc;
+        }, {});
+        
+        if (chartInstances.focusArea) chartInstances.focusArea.destroy(); // Destroy old instance
+        chartInstances.focusArea = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: Object.keys(focusAreaData).map(label => {
+                    if (label.length > 16) { // Label wrapping logic
+                        return label.split(' ').reduce((lines, word) => {
+                            if (lines.length === 0) return [word];
+                            let lastLine = lines[lines.length - 1];
+                            if (lastLine.length + word.length < 16) {
+                                lines[lines.length - 1] = lastLine + ' ' + word;
+                            } else {
+                                lines.push(word);
+                            }
+                            return lines;
+                        }, []);
+                    }
+                    return label;
+                }),
+                datasets: [{
+                    data: Object.values(focusAreaData),
+                    backgroundColor: ['#0ea5e9', '#f97316', '#22c55e', '#ef4444', '#8b5cf6', '#eab308'], // 6 distinct vibrant colors
+                    borderColor: '#f8fafc',
+                    borderWidth: 4,
+                    hoverBorderWidth: 4,
+                    hoverBorderColor: '#e2e8f0'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: { position: 'bottom', labels: { padding: 20, font: { size: 14 } } },
+                    tooltip: {
+                        enabled: true,
+                        backgroundColor: '#1e293b',
+                        titleFont: { size: 16, weight: 'bold' },
+                        bodyFont: { size: 14 },
+                        padding: 12,
+                        cornerRadius: 6,
+                        callbacks: {
+                           title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                           }
+                        }
+                    }
+                }
+            }
+        });
+    }
+    
+    function renderOwnerChart() {
+        const ctx = document.getElementById('ownerChart').getContext('2d');
+        // Group by displayTeam
+        const teamData = projectData.reduce((acc, p) => {
+            const teamName = getDisplayTeam(p);
+            acc[teamName] = (acc[teamName] || 0) + 1;
+            return acc;
+        }, {});
+
+        const sortedTeams = Object.entries(teamData).sort(([, a], [, b]) => b - a);
+        
+        if (chartInstances.owner) chartInstances.owner.destroy(); // Destroy old instance
+        chartInstances.owner = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: sortedTeams.map(o => o[0]),
+                datasets: [{
+                    label: 'Projects Owned',
+                    data: sortedTeams.map(o => o[1]),
+                    backgroundColor: '#38bdf8',
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        enabled: true,
+                        backgroundColor: '#1e293b',
+                        titleFont: { size: 16, weight: 'bold' },
+                        bodyFont: { size: 14 },
+                        padding: 12,
+                        cornerRadius: 6,
+                         callbacks: {
+                           title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                           }
+                        }
+                    }
+                },
+                scales: {
+                    y: { grid: { display: false }, ticks: { font: { size: 14 } } },
+                    x: {
+                        grid: { color: '#e2e8f0' },
+                        ticks: {
+                            font: { size: 14 },
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Render projects for each consolidated category section
+    const consolidatedCategories = ['Growth', 'Efficiency', 'Category Expansion', 'AI', 'Profitability', 'Qcomm'];
+    consolidatedCategories.forEach(category => {
+        const sectionId = `${category.toLowerCase().replace(/[^a-z0-9]/g, '-')}-category`;
+        const sectionProjects = projectData.filter(p => p.consolidatedCategory === category);
+        renderProjectCards(sectionId, sectionProjects);
+    });
+
+    // Handle NMV and Growth Data
+    const revenuePlanData = [
+        { segment: 'Food', nmv_202507: 1081.5, growth_202507: 0.115, nmv_202508: 1294.1, growth_202508: 0.197, nmv_202509: 1251.7, growth_202509: -0.033, nmv_q1: 2877.5, nmv_q2: 3627.3, growth_qoq: 0.2717 }, // Adjusted QoQ to match total
+        { segment: 'Henlo', nmv_202507: 28.1, growth_202507: 0.118, nmv_202508: 35.2, growth_202508: 0.256, nmv_202509: 39.8, growth_202509: 0.129, nmv_q1: 73.9, nmv_q2: 103.1, growth_qoq: 0.3952 },
+        { segment: 'Non-Food', nmv_202507: 155.4, growth_202507: 0.160, nmv_202508: 177.2, growth_202508: 0.141, nmv_202509: 165.8, growth_202509: -0.064, nmv_q1: 375.6, nmv_q2: 498.4, growth_qoq: 0.3270 },
+        { segment: 'PL NF', nmv_202507: 31.1, growth_202507: 0.150, nmv_202508: 36.1, growth_202508: 0.162, nmv_202509: 35.5, growth_202509: -0.014, nmv_q1: 79.2, nmv_q2: 102.7, growth_qoq: 0.2966 },
+        { segment: 'Total', nmv_202507: 1295.9, growth_202507: 0.121, nmv_202508: 1542.6, growth_202508: 0.190, nmv_202509: 1492.9, growth_202509: -0.032, nmv_q1: 3406.1, nmv_q2: 4331.4, growth_qoq: 0.2717 }
+    ];
+
+    const nmMovementData = [
+        { area: 'NM%', jun25: null, jul25: 0.190, aug25: 0.180, sep25: 0.189, q1fy26: 0.177, q2fy26: 0.189 }, // Added jun25 for consistency, Q1/Q2 for bar chart
+        { area: 'Discount %', jun25: 0.160, jul25: 0.149, aug25: 0.159, sep25: 0.151, q1fy26: 0.160, q2fy26: 0.151 } // Added jun25 for line chart, Q1/Q2 for bar chart
+    ];
+
+    function renderRevenuePlanTable() {
+        const container = document.getElementById('revenue-plan-table-container');
+        let tableHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th rowspan="2">Segment</th>
+                        <th rowspan="2" class="text-right ${monthBorderRightClass}">Q1 NMV</th>
+                        <th colspan="2" class="text-center ${monthBorderRightClass}">202507</th>
+                        <th colspan="2" class="text-center ${monthBorderRightClass}">202508</th>
+                        <th colspan="2" class="text-center ${monthBorderRightClass}">202509</th>
+                        <th rowspan="2" class="text-right ">Q2 NMV</th>
+                        <th rowspan="2" class="text-right ${monthBorderRightClass}">QoQ Growth</th>
+                    </tr>
+                    <tr>
+                        <th class="text-right">NMV</th>
+                        <th class="text-right ${monthBorderRightClass}">Growth</th>
+                        <th class="text-right${monthBorderRightClass}">NMV</th>
+                        <th class="text-right ${monthBorderRightClass}">Growth</th>
+                        <th class="text-right${monthBorderRightClass}">NMV</th>
+                        <th class="text-right">Growth</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+        revenuePlanData.forEach(row => {
+            const isTotal = row.segment === 'Total';
+            tableHTML += `
+                <tr class="${isTotal ? 'highlight-row' : ''}">
+                    <td>${row.segment}</td>
+                    <td class="text-right ${monthBorderRightClass}">${row.nmv_q1.toFixed(1)}</td>
+                    <td class="text-right">${row.nmv_202507.toFixed(1)}</td>
+                    <td class="text-right ${monthBorderRightClass}">${(row.growth_202507 * 100).toFixed(1)}%</td>
+                    <td class="text-right">${row.nmv_202508.toFixed(1)}</td>
+                    <td class="text-right ${monthBorderRightClass}">${(row.growth_202508 * 100).toFixed(1)}%</td>
+                    <td class="text-right">${row.nmv_202509.toFixed(1)}</td>
+                    <td class="text-right ${monthBorderRightClass}">${(row.growth_202509 * 100).toFixed(1)}%</td>
+                    <td class="text-right">${row.nmv_q2.toFixed(1)}</td>
+                    <td class="text-right ${monthBorderRightClass}">${(row.growth_qoq * 100).toFixed(2)}%</td>
+                </tr>
+            `;
+        });
+        tableHTML += `</tbody></table>`;
+        container.innerHTML = tableHTML;
+
+        const q2fy26TotalNMV = revenuePlanData.find(row => row.segment === 'Total').nmv_q2;
+        document.getElementById('base-nmv').textContent = `${q2fy26TotalNMV.toFixed(1)}`;
+
+        // Render Revenue Scenario Chart (QoQ Growth % and Projected Revenue)
+        const q1fy26TotalNMV = revenuePlanData.find(row => row.segment === 'Total').nmv_q1;
+        const scenarios = [0.80, 0.90, 1.00, 1.10];
+        const scenarioLabels = scenarios.map(s => `${(s * 100).toFixed(0)}% Target`);
+        const projectedNMVs = scenarios.map(s => (q2fy26TotalNMV * s));
+        const projectedQoQGrowth = scenarios.map(s => {
+            const projectedQ2NMV = q2fy26TotalNMV * s;
+            return ((projectedQ2NMV - q1fy26TotalNMV) / q1fy26TotalNMV * 100);
+        });
+
+        const ctxScenario = document.getElementById('revenueScenarioChart').getContext('2d');
+        if(chartInstances.revenueScenario) chartInstances.revenueScenario.destroy();
+        chartInstances.revenueScenario = new Chart(ctxScenario, {
+            type: 'bar', // Default to bar for revenue
+            data: {
+                labels: scenarioLabels,
+                datasets: [
+                    {
+                        label: 'Projected Q2FY26 NMV',
+                        data: projectedNMVs,
+                        backgroundColor: '#0ea5e9', // Blue for revenue
+                        borderColor: '#0ea5e9',
+                        borderWidth: 1,
+                        borderRadius: 5,
+                        yAxisID: 'y-nmv',
+                        order: 1 // Render bars first
+                    },
+                    {
+                        type: 'line', // Line for growth %
+                        label: 'Projected QoQ Growth %',
+                        data: projectedQoQGrowth,
+                        borderColor: '#22c55e', // Green for growth
+                        backgroundColor: 'rgba(34, 197, 94, 0.2)', // Light green fill
+                        borderWidth: 3,
+                        fill: true,
+                        yAxisID: 'y-growth',
+                        tension: 0.3, // Smooth line
+                        pointRadius: 5,
+                        pointBackgroundColor: '#22c55e',
+                        order: 0 // Render line on top
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                if (context.dataset.label === 'Projected Q2FY26 NMV') {
+                                    return `Revenue: ${context.raw.toFixed(1)} Cr`;
+                                } else if (context.dataset.label === 'Projected QoQ Growth %') {
+                                    return `Growth: ${context.raw.toFixed(1)}%`;
+                                }
+                                return context.raw;
+                            },
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                           }
+                        }
+                    }
+                },
+                scales: {
+                    'y-nmv': {
+                        type: 'linear',
+                        position: 'left',
+                        beginAtZero: true,
+                        title: { display: true, text: 'NMV (in crores)' }
+                    },
+                    'y-growth': {
+                        type: 'linear',
+                        position: 'right',
+                        beginAtZero: true,
+                        title: { display: true, text: 'QoQ Growth %' },
+                        grid: { drawOnChartArea: false } // Only draw grid for left axis
+                    },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+    }
+
+    function renderNMMovementTable() {
+        // Render NM% Comparison Chart (Bar Chart)
+        const nmRow = nmMovementData.find(d => d.area === 'NM%');
+        const ctxNm = document.getElementById('nmComparisonChart').getContext('2d');
+        if(chartInstances.nmComparison) chartInstances.nmComparison.destroy();
+        chartInstances.nmComparison = new Chart(ctxNm, {
+            type: 'bar',
+            data: {
+                labels: ['Q1FY26', 'Q2FY26'],
+                datasets: [{
+                    label: 'NM%',
+                    data: [nmRow.q1fy26 * 100, nmRow.q2fy26 * 100],
+                    backgroundColor: ['#0ea5e9', '#22c55e'],
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `NM%: ${context.raw.toFixed(1)}%`;
+                            },
+                             title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                           }
+                        }
+                    }
+                },
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: 'NM%' } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // Render Discount% Trend Chart (Line Graph from June to Sep)
+        const discountRow = nmMovementData.find(d => d.area === 'Discount %');
+        const ctxDiscount = document.getElementById('discountTrendChart').getContext('2d'); // Changed ID to discountTrendChart
+        if(chartInstances.discountTrend) chartInstances.discountTrend.destroy(); // Changed instance name
+        chartInstances.discountTrend = new Chart(ctxDiscount, {
+            type: 'line', // Changed to line chart
+            data: {
+                labels: ['Jun-25', 'Jul-25', 'Aug-25', 'Sep-25'],
+                datasets: [{
+                    label: 'Discount %',
+                    data: [discountRow.jun25 * 100, discountRow.jul25 * 100, discountRow.aug25 * 100, discountRow.sep25 * 100],
+                    borderColor: '#f59e0b', // Orange color for line
+                    backgroundColor: 'rgba(245, 158, 11, 0.2)', // Light orange fill
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.3, // Smooth line
+                    pointRadius: 5,
+                    pointBackgroundColor: '#f59e0b'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `Discount%: ${context.raw.toFixed(1)}%`;
+                            },
+                             title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                           }
+                        }
+                    }
+                },
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: 'Discount%' } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+    }
+
+    function renderProjectsByLevelAndTeamTable() {
+        const container = document.getElementById('projects-by-level-team-table-container');
+        const teamLevels = {}; // { 'TeamName': { 'Large': count, 'BAU++': count, 'BAU+': count, 'Other': count } }
+
+        projectData.forEach(p => {
+            const teamName = getDisplayTeam(p);
+            const projectType = p.type; // Use 'type' for project level
+
+            if (!teamLevels[teamName]) {
+                teamLevels[teamName] = { 'Large': 0, 'BAU++': 0, 'BAU+': 0, 'Other': 0 };
+            }
+
+            if (projectType === 'Large') {
+                teamLevels[teamName]['Large']++;
+            } else if (projectType === 'BAU++') {
+                teamLevels[teamName]['BAU++']++;
+            } else if (projectType === 'BAU+') {
+                teamLevels[teamName]['BAU+']++;
+            } else {
+                teamLevels[teamName]['Other']++;
+            }
+        });
+
+        let tableHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th>Team Name</th>
+                        <th class="text-right">Large Projects</th>
+                        <th class="text-right">BAU++ Projects</th>
+                        <th class="text-right">BAU+ Projects</th>
+                        <th class="text-right">Other Projects</th>
+                        <th class="text-right">Total Projects</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+        for (const teamName in teamLevels) {
+            const levels = teamLevels[teamName];
+            const totalProjects = levels['Large'] + levels['BAU++'] + levels['BAU+'] + levels['Other'];
+            tableHTML += `
+                <tr>
+                    <td>${teamName}</td>
+                    <td class="text-right">${levels['Large']}</td>
+                    <td class="text-right">${levels['BAU++']}</td>
+                    <td class="text-right">${levels['BAU+']}</td>
+                    <td class="text-right">${levels['Other']}</td>
+                    <td class="text-right font-semibold">${totalProjects}</td>
+                </tr>
+            `;
+        }
+        tableHTML += `</tbody></table>`;
+        container.innerHTML = tableHTML;
+    }
+
+
+    // Initial Load
+    updateKPIs();
+    renderFocusAreaChart();
+    renderOwnerChart();
+    renderRevenuePlanTable();
+    renderNMMovementTable();
+    renderProjectsByLevelAndTeamTable(); // Render the new table
+
+    // Sidebar active link highlighting based on scroll position
+    const sections = document.querySelectorAll('main section');
+    const sidebarLinks = document.querySelectorAll('#sidebar-nav a');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                sidebarLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${entry.target.id}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }, { rootMargin: "-50% 0px -50% 0px" }); // Adjust rootMargin to trigger when section is roughly in the middle
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            document.querySelector(targetId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+});
