@@ -41,7 +41,7 @@
         }
 
         .sidebar-header h2 {
-            color: #d32f2f;
+            color: #c5a9ff;
         }
 
         .nav-tabs {
@@ -50,16 +50,16 @@
 
         .nav-tab {
             padding: 15px 20px;
-            color: #555;
+            color: #ffffff;
             cursor: pointer;
             transition: all 0.3s ease;
             border-left: 3px solid transparent;
         }
 
         .nav-tab:hover, .nav-tab.active {
-            background: #fbe9e7;
-            color: #d32f2f;
-            border-left: 3px solid #d32f2f;
+            background: rgba(174,215,104,0.2);
+            color: #ffffff;
+            border-left: 3px solid #aed768;
         }
         
         .content {
@@ -68,9 +68,10 @@
             width: calc(100% - 280px); /* Adjusted to match sidebar width */
             transition: margin-left 0.3s ease;
         }
-
+        
         .header {
-            background: #ffffff;
+            background: linear-gradient(135deg, #c5a9ff 0%, #3949ab 100%);
+            color: white;
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 30px;
@@ -85,10 +86,12 @@
         }
 
         .metric-card {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-top: 4px solid #aed768;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .insight-table {
@@ -99,7 +102,7 @@
         }
 
         .insight-table h3 {
-            color: #d32f2f;
+            color: #c5a9ff;
             padding: 15px 20px;
             border-bottom: 1px solid #e0e0e0;
         }
@@ -119,18 +122,6 @@
             background-color: #f5f5f5;
         }
 
-        .header {
-            background: linear-gradient(135deg, #cc0000 0%, #8b0000 100%);
-            color: white;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            margin: 0;
-            margin-left: 0;
-            transition: margin-left 0.3s ease;
-            position: relative;
-            top: 0;
-        }
         
         .header.sidebar-open {
             margin-left: 280px;
@@ -154,7 +145,7 @@
             top: 0;
             width: 280px;
             height: 100vh;
-            background: linear-gradient(180deg, #cc0000 0%, #8b0000 100%);
+            background: linear-gradient(180deg, #c5a9ff 0%, #3949ab 100%);
             color: white;
             padding: 20px 0;
             box-shadow: 2px 0 15px rgba(0,0,0,0.2);
@@ -186,7 +177,7 @@
             position: fixed;
             left: 20px;
             top: 20px;
-            background: #cc0000;
+            background: #c5a9ff;
             color: white;
             border: none;
             padding: 10px;
@@ -198,7 +189,7 @@
         }
         
         .sidebar-toggle:hover {
-            background: #8b0000;
+            background: #3949ab;
             transform: scale(1.1);
         }
         
@@ -206,7 +197,7 @@
             position: fixed;
             right: 20px;
             top: 20px;
-            background: #cc0000;
+            background: #c5a9ff;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -219,7 +210,7 @@
         }
         
         .currency-toggle:hover {
-            background: #8b0000;
+            background: #3949ab;
             transform: translateY(-2px);
         }
         
@@ -253,29 +244,29 @@
             margin: 2px 10px;
             background: rgba(255,255,255,0.1);
             border: none;
-            color: #f0f0f0; /* Changed to a light grey for better contrast */
+            color: #ffffff;
             cursor: pointer;
             border-radius: 8px;
             font-weight: 500;
             transition: all 0.3s ease;
             text-align: left;
             font-size: 0.95rem;
-            border-left: 4px solid transparent;
+            border-left: 4px solid #aed768;
         }
         
         .nav-tab:hover {
-            background: rgba(255,255,255,0.2);
+            background: rgba(174,215,104,0.2);
             transform: translateX(5px);
-            border-left-color: rgba(255,255,255,0.5);
-            color: #FFFFFF; /* Brighter white on hover */
+            border-left-color: #aed768;
+            color: #FFFFFF;
         }
         
         .nav-tab.active {
-            background: rgba(255,255,255,0.25);
-            border-left-color: white;
+            background: rgba(174,215,104,0.3);
+            border-left-color: #aed768;
             transform: translateX(5px);
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            color: #FFFFFF; /* White for active tab */
+            color: #FFFFFF;
         }
         
         .content {
@@ -355,7 +346,7 @@
             padding: 25px;
             border-radius: 15px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            border-top: 4px solid #cc0000;
+            border-top: 4px solid #aed768;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
@@ -375,7 +366,7 @@
         .metric-value {
             font-size: 2.5rem;
             font-weight: bold;
-            color: #cc0000;
+            color: #aed768;
             margin-bottom: 10px;
         }
         
@@ -395,7 +386,7 @@
         }
         
         .insight-table h3 {
-            background: #cc0000;
+            background: #c5a9ff;
             color: white;
             padding: 20px;
             margin: 0;
@@ -433,12 +424,12 @@
         
         .percentage {
             font-weight: 600;
-            color: #cc0000;
+            color: #aed768;
         }
         
         .currency {
             font-weight: 600;
-            color: #27ae60;
+            color: #aed768;
         }
         
         .section-header {
@@ -447,7 +438,7 @@
             border-radius: 15px;
             margin: 0 0 20px 0;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border-left: 5px solid #cc0000;
+            border-left: 5px solid #c5a9ff;
         }
         
         .section-header h2 {
@@ -461,7 +452,7 @@
         }
         
         .highlight {
-            background: linear-gradient(120deg, #cc0000 0%, #ff6b6b 100%);
+            background: linear-gradient(120deg, #aed768 0%, #8bc34a 100%);
             color: white;
             padding: 2px 8px;
             border-radius: 5px;
@@ -479,11 +470,11 @@
             grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
-
+        
         /* Cover Page Styles */
         .cover-page {
             min-height: 100vh;
-            background: linear-gradient(135deg, #cc0000 0%, #8b0000 100%);
+            background: linear-gradient(135deg, #c5a9ff 0%, #3949ab 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -520,7 +511,7 @@
         }
         
         .supertails-logo {
-            color: #FFD700;
+            color: #ffffff;
         }
         
         .royal-canin-logo {
@@ -574,7 +565,7 @@
         .stat-number {
             font-size: 2rem;
             font-weight: 800;
-            color: #FFD700;
+            color: #ffffff;
             margin-bottom: 8px;
         }
         
@@ -584,8 +575,8 @@
         }
         
         .start-button {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            color: #1e3c72;
+            background: linear-gradient(135deg, #aed768 0%, #8bc34a 100%);
+            color: #ffffff;
             border: none;
             padding: 18px 40px;
             font-size: 1.2rem;
@@ -593,13 +584,13 @@
             border-radius: 50px;
             cursor: pointer;
             margin: 30px 0;
-            box-shadow: 0 8px 25px rgba(255,215,0,0.3);
+            box-shadow: 0 8px 25px rgba(174, 215, 104, 0.3);
             transition: all 0.3s ease;
         }
         
         .start-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(255,215,0,0.4);
+            box-shadow: 0 12px 35px rgba(174, 215, 104, 0.4);
         }
         
         .cover-footer {
@@ -749,706 +740,615 @@
         </div>
         
         <div style="display: flex; flex: 1;"> <!-- Added flex container for sidebar and content -->
-            <div class="sidebar-hover-trigger" onmouseenter="showSidebar()" onmouseleave="hideSidebar()"></div>
-            <div class="sidebar" id="sidebar">
-                <div class="sidebar-header">
-                    <h2>Royal Canin</h2>
-                    <p>Analysis Dashboard</p>
-                </div>
-                <div class="nav-tabs">
-                    <div class="nav-tab active" onclick="showTab('overview')">📊 Executive Summary</div>
-                    <div class="nav-tab" onclick="showTab('frequency')">📈 Buying Frequency</div>
-                    <div class="nav-tab" onclick="showTab('breed')">🐾 Breed Intelligence</div>
-                    <div class="nav-tab" onclick="showTab('geography')">🗺️ Geographic Insights</div>
-                    <div class="nav-tab" onclick="showTab('demographics')">👥 Demographics</div>
-                    <div class="nav-tab" onclick="showTab('acquisition')">📅 Platform Acquisition</div>
-                    <div class="nav-tab" onclick="showTab('competition')">🥊 Competitive Landscape</div>
-                    <div class="nav-tab" onclick="showTab('vdiet')">🏥 V-Diet Analysis</div>
-                    <div class="nav-tab" onclick="showTab('dataquality')">📊 Data Quality</div>
-                </div>
+        <div class="sidebar-hover-trigger" onmouseenter="showSidebar()" onmouseleave="hideSidebar()"></div>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>Royal Canin</h2>
+                <p>Analysis Dashboard</p>
+            </div>
+            <div class="nav-tabs">
+                <div class="nav-tab active" onclick="showTab('overview')">📊 Executive Summary</div>
+                <div class="nav-tab" onclick="showTab('frequency')">📈 Buying Frequency</div>
+                <div class="nav-tab" onclick="showTab('breed')">🐾 Breed Intelligence</div>
+                <div class="nav-tab" onclick="showTab('geography')">🗺️ Geographic Insights</div>
+                <div class="nav-tab" onclick="showTab('demographics')">👥 Demographics</div>
+                <div class="nav-tab" onclick="showTab('acquisition')">📅 Platform Acquisition</div>
+                <div class="nav-tab" onclick="showTab('competition')">🥊 Competitive Landscape</div>
+                <div class="nav-tab" onclick="showTab('vdiet')">🏥 V-Diet Analysis</div>
+                <div class="nav-tab" onclick="showTab('dataquality')">📊 Data Quality</div>
+            </div>
+        </div>
+        
+        <div class="content">
+        <!-- Executive Summary Tab -->
+        <div id="overview" class="tab-content active">
+            <div class="section-header">
+                <h2>🎯 Executive Summary</h2>
+                <p>Comprehensive analysis of <span class="highlight">56.1K Royal Canin customers</span> representing the premium pet food segment (Updated: September 2025)</p>
             </div>
             
-            <div class="content">
-            <!-- Executive Summary Tab -->
-            <div id="overview" class="tab-content active">
-                <div class="section-header">
-                    <h2>🎯 Executive Summary</h2>
-                    <p>Comprehensive analysis of <span class="highlight">56.1K Royal Canin customers</span> representing the premium pet food segment (Updated: September 2025)</p>
-                </div>
-                
-                <div class="insight-table">
+            <div class="insight-table">
                     <h3>📈 Yearly Growth Performance (2024 vs 2025 - First 8 Months)</h3>
-                    <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Metric</th>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
                                     <th>2024 (Jan-Aug)</th>
                                     <th>2025 (Jan-Aug)</th>
                                     <th>Growth %</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
                                     <td><strong>Total Orders</strong></td>
                                     <td>57,257</td>
                                     <td>88,402</td>
                                     <td class="percentage">+54.4%</td>
-                                </tr>
-                                <tr>
+                            </tr>
+                            <tr>
                                     <td><strong>Total Revenue</strong></td>
                                     <td class="currency" data-revenue="135900000">₹135,900K</td>
                                     <td class="currency" data-revenue="220700000">₹220,700K</td>
                                     <td class="percentage">+62.4%</td>
-                                </tr>
-                                <tr>
+                            </tr>
+                            <tr>
                                     <td><strong>Unique Customers</strong></td>
                                     <td>21.8K</td>
                                     <td>31.1K</td>
                                     <td class="percentage">+42.4%</td>
-                                </tr>
-                                <tr>
+                            </tr>
+                            <tr>
                                     <td><strong>Avg Order Value</strong></td>
                                     <td class="currency">₹2,373</td>
                                     <td class="currency">₹2,496</td>
                                     <td class="percentage">+5.2%</td>
-                                </tr>
-                                <tr>
+                            </tr>
+                            <tr>
                                     <td><strong>New Customers</strong></td>
                                     <td>12.2K</td>
                                     <td>14.9K</td>
                                     <td class="percentage">+21.5%</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h3>👥 Customer Base</h3>
+                    <div class="metric-value">56.1K</div>
+                    <div class="metric-label">Unique RC Customers</div>
+                    <p><strong>Loyalty Split:</strong> 33.8% RC Exclusive, 66.2% Multi-brand</p>
                 </div>
                 
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <h3>👥 Customer Base</h3>
-                        <div class="metric-value">56.1K</div>
-                        <div class="metric-label">Unique RC Customers</div>
-                        <p><strong>Loyalty Split:</strong> 33.8% RC Exclusive, 66.2% Multi-brand</p>
-                    </div>
-                    
-                    <div class="metric-card">
-                        <h3>💰 Revenue Performance</h3>
-                        <div class="metric-value" data-revenue="24788">₹24,788</div>
-                        <div class="metric-label">Avg Total LTV per RC Customer</div>
-                        <p><strong>RC Share:</strong> <span data-revenue="10114">₹10,114</span> (40.8% of total LTV)</p>
-                    </div>
-                    
-                    <div class="metric-card">
-                        <h3>🛒 Purchase Behavior</h3>
-                        <div class="metric-value">4.11</div>
-                        <div class="metric-label">Avg RC Orders per Customer</div>
-                        <p><strong>Total Orders:</strong> 230.6K RC orders</p>
-                    </div>
-                    
-                    <div class="metric-card">
-                        <h3>💵 Average Order Value</h3>
-                        <div class="metric-value" data-revenue="2459">₹2,459</div>
-                        <div class="metric-label">RC AOV (Updated 2025)</div>
-                        <p><strong>Data Period:</strong> 2021-05-26 to 2025-09-01</p>
-                    </div>
-                    
-                    <div class="metric-card">
-                        <h3>🌟 Top Product Category</h3>
-                        <div class="metric-value">Dogs - Dry Food</div>
-                        <div class="metric-label">Leading RC Product Line</div>
-                        <p><strong>Revenue:</strong> <span data-revenue="2647700000">₹2.65B</span> (28.5K customers)</p>
-                    </div>
-                    
-                    <div class="metric-card">
-                        <h3>🏙️ Geographic Leader</h3>
-                        <div class="metric-value">Bangalore</div>
-                        <div class="metric-label">Top performing city</div>
-                        <p><strong>Performance:</strong> 459 customers, <span data-revenue="3258000">₹3,258K</span> revenue</p>
-                    </div>
-                    
-                    <div class="metric-card">
-                        <h3>💎 V-Diet Premium</h3>
-                        <div class="metric-value" data-revenue="2757">₹2,757</div>
-                        <div class="metric-label">V-Diet AOV</div>
-                        <p><strong>Performance:</strong> 6.0K customers, <span data-revenue="47200000">₹47,200K</span> revenue</p>
-                    </div>
-                    
-                    <div class="metric-card">
-                        <h3>⚔️ Competitive Threat</h3>
-                        <div class="metric-value">18.4%</div>
-                        <div class="metric-label">Me O penetration in RC base</div>
-                        <p><strong>Top 3 threats:</strong> Me O, Drools (18.2%), Sheba (18.0%)</p>
-                    </div>
-                    
-                    <div class="metric-card">
-                        <h3>📈 Revenue Growth</h3>
-                        <div class="metric-value">+62.4%</div>
-                        <div class="metric-label">YoY Growth (Jan-Aug)</div>
-                        <p><strong>2025:</strong> <span data-revenue="220700000">₹220,700K</span> vs <span data-revenue="135900000">₹135,900K</span> in 2024</p>
-                    </div>
-                    
-                    <div class="metric-card">
-                        <h3>👥 Customer Growth</h3>
-                        <div class="metric-value">+42.4%</div>
-                        <div class="metric-label">YoY Customer Growth</div>
-                        <p><strong>2025:</strong> 31.1K vs 21.8K customers in 2024</p>
-                    </div>
-                    
-                    <div class="metric-card">
-                        <h3>🛒 Order Volume Growth</h3>
-                        <div class="metric-value">+54.4%</div>
-                        <div class="metric-label">YoY Order Growth</div>
-                        <p><strong>2025:</strong> 88.4K vs 57.3K orders in 2024</p>
-                    </div>
-                    
-                    <div class="metric-card">
-                        <h3>🗺️ Geographic Leader</h3>
-                        <div class="metric-value">Karnataka</div>
-                        <div class="metric-label">Top state by revenue</div>
-                        <p><strong><span data-revenue="59300000">₹59,300K</span></strong> (27% share, +45.2% growth)</p>
-                    </div>
-                    
+                <div class="metric-card">
+                    <h3>💰 Revenue Performance</h3>
+                    <div class="metric-value" data-revenue="24788">₹24,788</div>
+                    <div class="metric-label">Avg Total LTV per RC Customer</div>
+                    <p><strong>RC Share:</strong> <span data-revenue="10114">₹10,114</span> (40.8% of total LTV)</p>
                 </div>
                 
-                <!-- Yearly Growth Metrics -->
+                <div class="metric-card">
+                    <h3>🛒 Purchase Behavior</h3>
+                    <div class="metric-value">4.11</div>
+                    <div class="metric-label">Avg RC Orders per Customer</div>
+                    <p><strong>Total Orders:</strong> 230.6K RC orders</p>
+                </div>
                 
-                <!-- Geographic Performance Section -->
+                <div class="metric-card">
+                    <h3>💵 Average Order Value</h3>
+                    <div class="metric-value" data-revenue="2459">₹2,459</div>
+                    <div class="metric-label">RC AOV (Updated 2025)</div>
+                    <p><strong>Data Period:</strong> 2021-05-26 to 2025-09-01</p>
+                </div>
+                
+                <div class="metric-card">
+                    <h3>🌟 Top Product Category</h3>
+                    <div class="metric-value">Dogs - Dry Food</div>
+                    <div class="metric-label">Leading RC Product Line</div>
+                    <p><strong>Revenue:</strong> <span data-revenue="2647700000">₹2.65B</span> (28.5K customers)</p>
+                </div>
+                
+                <div class="metric-card">
+                    <h3>🏙️ Geographic Leader</h3>
+                    <div class="metric-value">Bangalore</div>
+                    <div class="metric-label">Top performing city</div>
+                    <p><strong>Performance:</strong> 459 customers, <span data-revenue="3258000">₹3,258K</span> revenue</p>
+                </div>
+                
+                <div class="metric-card">
+                    <h3>💎 V-Diet Premium</h3>
+                    <div class="metric-value" data-revenue="2757">₹2,757</div>
+                    <div class="metric-label">V-Diet AOV</div>
+                    <p><strong>Performance:</strong> 6.0K customers, <span data-revenue="47200000">₹47,200K</span> revenue</p>
+                </div>
+                
+                <div class="metric-card">
+                    <h3>⚔️ Competitive Threat</h3>
+                    <div class="metric-value">18.4%</div>
+                    <div class="metric-label">Me O penetration in RC base</div>
+                    <p><strong>Top 3 threats:</strong> Me O, Drools (18.2%), Sheba (18.0%)</p>
+                </div>
+                
+                <div class="metric-card">
+                    <h3>📈 Revenue Growth</h3>
+                    <div class="metric-value">+62.4%</div>
+                    <div class="metric-label">YoY Growth (Jan-Aug)</div>
+                    <p><strong>2025:</strong> <span data-revenue="220700000">₹220,700K</span> vs <span data-revenue="135900000">₹135,900K</span> in 2024</p>
+                </div>
+                
+                <div class="metric-card">
+                    <h3>👥 Customer Growth</h3>
+                    <div class="metric-value">+42.4%</div>
+                    <div class="metric-label">YoY Customer Growth</div>
+                    <p><strong>2025:</strong> 31.1K vs 21.8K customers in 2024</p>
+                </div>
+                
+                <div class="metric-card">
+                    <h3>🛒 Order Volume Growth</h3>
+                    <div class="metric-value">+54.4%</div>
+                    <div class="metric-label">YoY Order Growth</div>
+                    <p><strong>2025:</strong> 88.4K vs 57.3K orders in 2024</p>
+                </div>
+                
+                <div class="metric-card">
+                    <h3>🗺️ Geographic Leader</h3>
+                    <div class="metric-value">Karnataka</div>
+                    <div class="metric-label">Top state by revenue</div>
+                    <p><strong><span data-revenue="59300000">₹59,300K</span></strong> (27% share, +45.2% growth)</p>
+                </div>
+                
+            </div>
+            
+            <!-- Yearly Growth Metrics -->
+            
+            <!-- Geographic Performance Section -->
+            <div class="insight-table">
+                <h3>🗺️ Geographic Performance & Growth Direction</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>State</th>
+                                <th>Revenue (₹ )</th>
+                                <th>Customers</th>
+                                <th>Revenue Share</th>
+                                <th>YoY Growth</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Karnataka</strong></td>
+                                <td class="currency" data-revenue="59300000">₹59,300K</td>
+                                <td>7.3K</td>
+                                <td class="percentage">27.0%</td>
+                                <td class="positive">+45.2%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Maharashtra</strong></td>
+                                <td class="currency" data-revenue="55500000">₹55,500K</td>
+                                <td>7.4K</td>
+                                <td class="percentage">25.2%</td>
+                                <td class="positive">+38.7%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Delhi</strong></td>
+                                <td class="currency" data-revenue="18000000">₹18,000K</td>
+                                <td>2.7K</td>
+                                <td class="percentage">8.2%</td>
+                                <td class="positive">+52.1%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Uttar Pradesh</strong></td>
+                                <td class="currency" data-revenue="13600000">₹13,600K</td>
+                                <td>2.3K</td>
+                                <td class="percentage">6.2%</td>
+                                <td class="positive">+67.3%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tamil Nadu</strong></td>
+                                <td class="currency" data-revenue="11100000">₹11,100K</td>
+                                <td>1.7K</td>
+                                <td class="percentage">5.0%</td>
+                                <td class="positive">+41.8%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="insight-text">
+                    <p><strong>🏆 Geographic Leadership:</strong> Karnataka leads with ₹59.3K revenue (27% share), followed by Maharashtra at ₹55.5K (25.2% share). Top 5 states contribute 71.6% of total RC revenue.</p>
+                    <p><strong>📈 Growth Champions:</strong> Daman & Diu shows highest growth (+1,222%), while Bihar (+108%) and Uttar Pradesh (+67%) lead among major states. All top states show strong double-digit growth.</p>
+                    <p><strong>🎯 Market Concentration:</strong> 38 states/UTs active, with clear tier-1 (Karnataka, Maharashtra) and tier-2 (Delhi, UP, TN) leadership structure.</p>
+                </div>
+            </div>
+            
+            <!-- Regional Sales Contribution Section -->
+            <div class="insight-table">
+                <h3>🗺️ Regional Sales Contribution & Growth Direction</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Region</th>
+                                <th>Revenue (₹ M)</th>
+                                <th>Customers</th>
+                                <th>Revenue Share</th>
+                                <th>Customer Share</th>
+                                <th>YoY Growth</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>South</strong></td>
+                                <td class="currency" data-revenue="89300000">₹89,300K</td>
+                                <td>11.9K</td>
+                                <td class="percentage">40.5%</td>
+                                <td class="percentage">37.9%</td>
+                                <td class="positive">+66.0%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>West</strong></td>
+                                <td class="currency" data-revenue="61400000">₹61,400K</td>
+                                <td>8.3K</td>
+                                <td class="percentage">27.8%</td>
+                                <td class="percentage">26.5%</td>
+                                <td class="positive">+56.6%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>North</strong></td>
+                                <td class="currency" data-revenue="51400000">₹51,400K</td>
+                                <td>8.0K</td>
+                                <td class="percentage">23.3%</td>
+                                <td class="percentage">25.4%</td>
+                                <td class="positive">+58.2%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>East</strong></td>
+                                <td class="currency" data-revenue="11500000">₹11,500K</td>
+                                <td>1.8K</td>
+                                <td class="percentage">5.2%</td>
+                                <td class="percentage">5.9%</td>
+                                <td class="positive">+73.2%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Central</strong></td>
+                                <td class="currency" data-revenue="3400000">₹3,400K</td>
+                                <td>581</td>
+                                <td class="percentage">1.5%</td>
+                                <td class="percentage">1.9%</td>
+                                <td class="positive">+78.4%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>North East</strong></td>
+                                <td class="currency" data-revenue="3100000">₹3,100K</td>
+                                <td>577</td>
+                                <td class="percentage">1.4%</td>
+                                <td class="percentage">1.8%</td>
+                                <td class="positive">+66.5%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="insight-text">
+                    <p><strong>🏆 Regional Leadership:</strong> South dominates with ₹89.3K (40.5% revenue share), followed by West at ₹61.4K (27.8%) and North at ₹51.4K (23.3%). Top 3 regions contribute 91.5% of total RC revenue.</p>
+                    <p><strong>📈 Growth Champions:</strong> Central region leads growth (+78.4%), followed by East (+73.2%) and North East (+66.5%). All regions show strong double-digit growth, indicating healthy expansion across India.</p>
+                    <p><strong>🎯 Market Concentration:</strong> Clear tier-1 (South, West, North) and tier-2 (East, Central, North East) regional structure with balanced growth across all regions.</p>
+                </div>
+            </div>
+            
+            <!-- Non-RC Brands Bought with RC Section -->
+            <div class="insight-table">
+                <h3>🛒 Non-RC Brands Bought Alongside Royal Canin</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Brand</th>
+                                <th>Revenue (₹ M)</th>
+                                <th>Orders</th>
+                                <th>Customers</th>
+                                <th>Revenue Share</th>
+                                <th>Order Penetration</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Sheba</strong></td>
+                                <td class="currency" data-revenue="12859330">₹12,859K</td>
+                                <td>8.0K</td>
+                                <td>3.7K</td>
+                                <td class="percentage">4.6%</td>
+                                <td class="percentage">10.2%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Whiskas</strong></td>
+                                <td class="currency" data-revenue="4670088">₹4.7M</td>
+                                <td>3.3K</td>
+                                <td>1.7K</td>
+                                <td class="percentage">1.7%</td>
+                                <td class="percentage">4.2%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Me O</strong></td>
+                                <td class="currency" data-revenue="4027215">₹4.0M</td>
+                                <td>5.3K</td>
+                                <td>3.0K</td>
+                                <td class="percentage">1.4%</td>
+                                <td class="percentage">6.8%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Farmina N&D</strong></td>
+                                <td class="currency" data-revenue="3205612">₹3.2M</td>
+                                <td>1.4K</td>
+                                <td>878</td>
+                                <td class="percentage">1.1%</td>
+                                <td class="percentage">1.8%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Pedigree</strong></td>
+                                <td class="currency" data-revenue="2069082">₹2.1M</td>
+                                <td>2.1K</td>
+                                <td>1.4K</td>
+                                <td class="percentage">0.7%</td>
+                                <td class="percentage">2.7%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Drools</strong></td>
+                                <td class="currency" data-revenue="1701872">₹1.7M</td>
+                                <td>3.2K</td>
+                                <td>2.3K</td>
+                                <td class="percentage">0.6%</td>
+                                <td class="percentage">4.1%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Matisse</strong></td>
+                                <td class="currency" data-revenue="1684426">₹1.7M</td>
+                                <td>1.4K</td>
+                                <td>774</td>
+                                <td class="percentage">0.6%</td>
+                                <td class="percentage">1.7%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Felix</strong></td>
+                                <td class="currency" data-revenue="1575886">₹1.6M</td>
+                                <td>1.2K</td>
+                                <td>594</td>
+                                <td class="percentage">0.6%</td>
+                                <td class="percentage">1.5%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Skatrs</strong></td>
+                                <td class="currency" data-revenue="1458636">₹1.5M</td>
+                                <td>5.2K</td>
+                                <td>4.4K</td>
+                                <td class="percentage">0.5%</td>
+                                <td class="percentage">6.6%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Temptations</strong></td>
+                                <td class="currency" data-revenue="1068076">₹1.1M</td>
+                                <td>2.4K</td>
+                                <td>1.4K</td>
+                                <td class="percentage">0.4%</td>
+                                <td class="percentage">3.0%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="insight-text">
+                    <p><strong>🛒 Complementary Brand Insights:</strong> 78,117 RC orders show customers frequently add other brands. Sheba leads with 4.6% of non-RC revenue share and 10.2% order penetration, indicating strong cat food mixing behavior.</p>
+                    <p><strong>🐱 Cat Food Synergy:</strong> Sheba (4.6% share, 10.2% penetration) and Whiskas (1.7% share, 4.2% penetration) are top cat food companions, showing customers mix premium RC with other cat brands for variety.</p>
+                    <p><strong>🐕 Dog Food Mixing:</strong> Me O (1.4% share, 6.8% penetration), Farmina N&D (1.1% share, 1.8% penetration), and Pedigree (0.7% share, 2.7% penetration) show dog owners diversify their pet food choices.</p>
+                </div>
+            </div>
+            
+            <!-- Non-RC Categories Bought with RC Section -->
+            <div class="insight-table">
+                <h3>📦 Non-RC Categories Bought Alongside Royal Canin</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Revenue (₹ M)</th>
+                                <th>Orders</th>
+                                <th>Customers</th>
+                                <th>Revenue Share</th>
+                                <th>Order Penetration</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Cats - Treats & Others</strong></td>
+                                <td class="currency" data-revenue="4574470">₹4.6M</td>
+                                <td>9.9K</td>
+                                <td>5.2K</td>
+                                <td class="percentage">5.5%</td>
+                                <td class="percentage">12.6%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cats - Litter</strong></td>
+                                <td class="currency" data-revenue="4389598">₹4.4M</td>
+                                <td>5.8K</td>
+                                <td>3.1K</td>
+                                <td class="percentage">5.3%</td>
+                                <td class="percentage">7.4%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dog Treats + Others</strong></td>
+                                <td class="currency" data-revenue="4265455">₹4.3M</td>
+                                <td>7.0K</td>
+                                <td>4.4K</td>
+                                <td class="percentage">5.1%</td>
+                                <td class="percentage">8.9%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Pharmacy</strong></td>
+                                <td class="currency" data-revenue="3757571">₹3.8M</td>
+                                <td>5.8K</td>
+                                <td>4.4K</td>
+                                <td class="percentage">4.5%</td>
+                                <td class="percentage">7.5%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Toys</strong></td>
+                                <td class="currency" data-revenue="1840266">₹1.8M</td>
+                                <td>5.2K</td>
+                                <td>4.3K</td>
+                                <td class="percentage">2.2%</td>
+                                <td class="percentage">6.7%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>HnW</strong></td>
+                                <td class="currency" data-revenue="1446153">₹1.4M</td>
+                                <td>3.0K</td>
+                                <td>2.5K</td>
+                                <td class="percentage">1.7%</td>
+                                <td class="percentage">3.8%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Grooming Supplies</strong></td>
+                                <td class="currency" data-revenue="1103278">₹1.1M</td>
+                                <td>2.6K</td>
+                                <td>2.3K</td>
+                                <td class="percentage">1.3%</td>
+                                <td class="percentage">3.4%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>CLH</strong></td>
+                                <td class="currency" data-revenue="400">₹400K</td>
+                                <td>781</td>
+                                <td>742</td>
+                                <td class="percentage">0.5%</td>
+                                <td class="percentage">1.0%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>BMT</strong></td>
+                                <td class="currency" data-revenue="400">₹400K</td>
+                                <td>216</td>
+                                <td>216</td>
+                                <td class="percentage">0.4%</td>
+                                <td class="percentage">0.3%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="insight-text">
+                    <p><strong>📦 Cross-Category Opportunities:</strong> RC customers show strong category diversification beyond food. Cats Treats (12.6% penetration), Cats Litter (7.4% penetration), and Dog Treats (8.9% penetration) show highest add-on potential.</p>
+                        <p><strong🎯 Health & Wellness:</strong> Pharmacy (7.5% penetration) and HnW (3.8% penetration) indicate RC customers prioritize pet health, creating opportunities for health-focused product partnerships.</p>
+                        <p><strong🐾 Lifestyle Products:</strong> Toys (6.7% penetration) and Grooming Supplies (3.4% penetration) show RC customers invest in complete pet care, not just nutrition.</p>
+                </div>
+            </div>
+            
+            <div class="two-column">
                 <div class="insight-table">
-                    <h3>🗺️ Geographic Performance & Growth Direction</h3>
+                    <h3>🏆 Top RC Customer Segments by Loyalty</h3>
                     <div class="table-container">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>State</th>
-                                    <th>Revenue (₹ M)</th>
+                                    <th>Loyalty Category</th>
                                     <th>Customers</th>
-                                    <th>Revenue Share</th>
-                                    <th>YoY Growth</th>
+                                    <th>Percentage</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><strong>Karnataka</strong></td>
-                                    <td class="currency" data-revenue="59300000">₹59,300K</td>
-                                    <td>7.3K</td>
-                                    <td class="percentage">27.0%</td>
-                                    <td class="positive">+45.2%</td>
+                                    <td>RC Exclusive (100%)</td>
+                                    <td>18,065</td>
+                                    <td class="percentage">33.81%</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Maharashtra</strong></td>
-                                    <td class="currency" data-revenue="55500000">₹55,500K</td>
-                                    <td>7.4K</td>
-                                    <td class="percentage">25.2%</td>
-                                    <td class="positive">+38.7%</td>
+                                    <td>RC Secondary (20-49%)</td>
+                                    <td>9,826</td>
+                                    <td class="percentage">18.39%</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Delhi</strong></td>
-                                    <td class="currency" data-revenue="18000000">₹18,000K</td>
-                                    <td>2.7K</td>
-                                    <td class="percentage">8.2%</td>
-                                    <td class="positive">+52.1%</td>
+                                    <td>RC Dominant (80-99%)</td>
+                                    <td>8,843</td>
+                                    <td class="percentage">16.55%</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Uttar Pradesh</strong></td>
-                                    <td class="currency" data-revenue="13600000">₹13,600K</td>
-                                    <td>2.3K</td>
-                                    <td class="percentage">6.2%</td>
-                                    <td class="positive">+67.3%</td>
+                                    <td>RC Majority (50-79%)</td>
+                                    <td>8,889</td>
+                                    <td class="percentage">16.64%</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Tamil Nadu</strong></td>
-                                    <td class="currency" data-revenue="11100000">₹11,100K</td>
-                                    <td>1.7K</td>
-                                    <td class="percentage">5.0%</td>
-                                    <td class="positive">+41.8%</td>
+                                    <td>RC Minimal (<20%)</td>
+                                    <td>7,809</td>
+                                    <td class="percentage">14.61%</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div class="insight-text">
-                        <p><strong>🏆 Geographic Leadership:</strong> Karnataka leads with ₹59.3K revenue (27% share), followed by Maharashtra at ₹55.5K (25.2% share). Top 5 states contribute 71.6% of total RC revenue.</p>
-                        <p><strong>📈 Growth Champions:</strong> Daman & Diu shows highest growth (+1,222%), while Bihar (+108%) and Uttar Pradesh (+67%) lead among major states. All top states show strong double-digit growth.</p>
-                        <p><strong>🎯 Market Concentration:</strong> 38 states/UTs active, with clear tier-1 (Karnataka, Maharashtra) and tier-2 (Delhi, UP, TN) leadership structure.</p>
-                    </div>
                 </div>
                 
-                <!-- Regional Sales Contribution Section -->
                 <div class="insight-table">
-                    <h3>🗺️ Regional Sales Contribution & Growth Direction</h3>
-                    <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Region</th>
-                                    <th>Revenue (₹ M)</th>
-                                    <th>Customers</th>
-                                    <th>Revenue Share</th>
-                                    <th>Customer Share</th>
-                                    <th>YoY Growth</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>South</strong></td>
-                                    <td class="currency" data-revenue="89300000">₹89,300K</td>
-                                    <td>11.9K</td>
-                                    <td class="percentage">40.5%</td>
-                                    <td class="percentage">37.9%</td>
-                                    <td class="positive">+66.0%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>West</strong></td>
-                                    <td class="currency" data-revenue="61400000">₹61,400K</td>
-                                    <td>8.3K</td>
-                                    <td class="percentage">27.8%</td>
-                                    <td class="percentage">26.5%</td>
-                                    <td class="positive">+56.6%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>North</strong></td>
-                                    <td class="currency" data-revenue="51400000">₹51,400K</td>
-                                    <td>8.0K</td>
-                                    <td class="percentage">23.3%</td>
-                                    <td class="percentage">25.4%</td>
-                                    <td class="positive">+58.2%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>East</strong></td>
-                                    <td class="currency" data-revenue="11500000">₹11,500K</td>
-                                    <td>1.8K</td>
-                                    <td class="percentage">5.2%</td>
-                                    <td class="percentage">5.9%</td>
-                                    <td class="positive">+73.2%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Central</strong></td>
-                                    <td class="currency" data-revenue="3400000">₹3,400K</td>
-                                    <td>581</td>
-                                    <td class="percentage">1.5%</td>
-                                    <td class="percentage">1.9%</td>
-                                    <td class="positive">+78.4%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>North East</strong></td>
-                                    <td class="currency" data-revenue="3100000">₹3,100K</td>
-                                    <td>577</td>
-                                    <td class="percentage">1.4%</td>
-                                    <td class="percentage">1.8%</td>
-                                    <td class="positive">+66.5%</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="insight-text">
-                        <p><strong>🏆 Regional Leadership:</strong> South dominates with ₹89.3K (40.5% revenue share), followed by West at ₹61.4K (27.8%) and North at ₹51.4K (23.3%). Top 3 regions contribute 91.5% of total RC revenue.</p>
-                        <p><strong>📈 Growth Champions:</strong> Central region leads growth (+78.4%), followed by East (+73.2%) and North East (+66.5%). All regions show strong double-digit growth, indicating healthy expansion across India.</p>
-                        <p><strong>🎯 Market Concentration:</strong> Clear tier-1 (South, West, North) and tier-2 (East, Central, North East) regional structure with balanced growth across all regions.</p>
-                    </div>
-                </div>
-                
-                <!-- Non-RC Brands Bought with RC Section -->
-                <div class="insight-table">
-                    <h3>🛒 Non-RC Brands Bought Alongside Royal Canin</h3>
+                    <h3>🥇 Top Competing Brands</h3>
                     <div class="table-container">
                         <table>
                             <thead>
                                 <tr>
                                     <th>Brand</th>
+                                    <th>RC Customer Penetration</th>
                                     <th>Revenue (₹ M)</th>
-                                    <th>Orders</th>
-                                    <th>Customers</th>
-                                    <th>Revenue Share</th>
-                                    <th>Order Penetration</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><strong>Sheba</strong></td>
-                                    <td class="currency" data-revenue="12859330">₹12,859K</td>
-                                    <td>8.0K</td>
-                                    <td>3.7K</td>
-                                    <td class="percentage">4.6%</td>
-                                    <td class="percentage">10.2%</td>
+                                    <td>Me O</td>
+                                    <td class="percentage">18.40%</td>
+                                    <td class="currency" data-revenue="53.8686065">₹53.9M</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Whiskas</strong></td>
-                                    <td class="currency" data-revenue="4670088">₹4.7M</td>
-                                    <td>3.3K</td>
-                                    <td>1.7K</td>
-                                    <td class="percentage">1.7%</td>
-                                    <td class="percentage">4.2%</td>
+                                    <td>Drools</td>
+                                    <td class="percentage">18.17%</td>
+                                    <td class="currency" data-revenue="23.033668375">₹23.0M</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Me O</strong></td>
-                                    <td class="currency" data-revenue="4027215">₹4.0M</td>
-                                    <td>5.3K</td>
-                                    <td>3.0K</td>
-                                    <td class="percentage">1.4%</td>
-                                    <td class="percentage">6.8%</td>
+                                    <td>Sheba</td>
+                                    <td class="percentage">18.00%</td>
+                                    <td class="currency" data-revenue="139.4609235">₹139.5M</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Farmina N&D</strong></td>
-                                    <td class="currency" data-revenue="3205612">₹3.2M</td>
-                                    <td>1.4K</td>
-                                    <td>878</td>
-                                    <td class="percentage">1.1%</td>
-                                    <td class="percentage">1.8%</td>
+                                    <td>Henlo</td>
+                                    <td class="percentage">15.84%</td>
+                                    <td class="currency" data-revenue="22.340387">₹22.3M</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Pedigree</strong></td>
-                                    <td class="currency" data-revenue="2069082">₹2.1M</td>
-                                    <td>2.1K</td>
-                                    <td>1.4K</td>
-                                    <td class="percentage">0.7%</td>
-                                    <td class="percentage">2.7%</td>
+                                    <td>Whiskas</td>
+                                    <td class="percentage">14.86%</td>
+                                    <td class="currency" data-revenue="87.571737">₹87.6M</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Drools</strong></td>
-                                    <td class="currency" data-revenue="1701872">₹1.7M</td>
-                                    <td>3.2K</td>
-                                    <td>2.3K</td>
-                                    <td class="percentage">0.6%</td>
-                                    <td class="percentage">4.1%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Matisse</strong></td>
-                                    <td class="currency" data-revenue="1684426">₹1.7M</td>
-                                    <td>1.4K</td>
-                                    <td>774</td>
-                                    <td class="percentage">0.6%</td>
-                                    <td class="percentage">1.7%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Felix</strong></td>
-                                    <td class="currency" data-revenue="1575886">₹1.6M</td>
-                                    <td>1.2K</td>
-                                    <td>594</td>
-                                    <td class="percentage">0.6%</td>
-                                    <td class="percentage">1.5%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Skatrs</strong></td>
-                                    <td class="currency" data-revenue="1458636">₹1.5M</td>
-                                    <td>5.2K</td>
-                                    <td>4.4K</td>
-                                    <td class="percentage">0.5%</td>
-                                    <td class="percentage">6.6%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Temptations</strong></td>
-                                    <td class="currency" data-revenue="1068076">₹1.1M</td>
-                                    <td>2.4K</td>
-                                    <td>1.4K</td>
-                                    <td class="percentage">0.4%</td>
-                                    <td class="percentage">3.0%</td>
+                                    <td>Pedigree</td>
+                                    <td class="percentage">14.60%</td>
+                                    <td class="currency" data-revenue="44.12302775">₹44.1M</td>
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                    <div class="insight-text">
-                        <p><strong>🛒 Complementary Brand Insights:</strong> 78,117 RC orders show customers frequently add other brands. Sheba leads with 4.6% of non-RC revenue share and 10.2% order penetration, indicating strong cat food mixing behavior.</p>
-                        <p><strong>🐱 Cat Food Synergy:</strong> Sheba (4.6% share, 10.2% penetration) and Whiskas (1.7% share, 4.2% penetration) are top cat food companions, showing customers mix premium RC with other cat brands for variety.</p>
-                        <p><strong>🐕 Dog Food Mixing:</strong> Me O (1.4% share, 6.8% penetration), Farmina N&D (1.1% share, 1.8% penetration), and Pedigree (0.7% share, 2.7% penetration) show dog owners diversify their pet food choices.</p>
-                    </div>
-                </div>
-                
-                <!-- Non-RC Categories Bought with RC Section -->
-                <div class="insight-table">
-                    <h3>📦 Non-RC Categories Bought Alongside Royal Canin</h3>
-                    <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Category</th>
-                                    <th>Revenue (₹ M)</th>
-                                    <th>Orders</th>
-                                    <th>Customers</th>
-                                    <th>Revenue Share</th>
-                                    <th>Order Penetration</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Cats - Treats & Others</strong></td>
-                                    <td class="currency" data-revenue="4574470">₹4.6M</td>
-                                    <td>9.9K</td>
-                                    <td>5.2K</td>
-                                    <td class="percentage">5.5%</td>
-                                    <td class="percentage">12.6%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Cats - Litter</strong></td>
-                                    <td class="currency" data-revenue="4389598">₹4.4M</td>
-                                    <td>5.8K</td>
-                                    <td>3.1K</td>
-                                    <td class="percentage">5.3%</td>
-                                    <td class="percentage">7.4%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Dog Treats + Others</strong></td>
-                                    <td class="currency" data-revenue="4265455">₹4.3M</td>
-                                    <td>7.0K</td>
-                                    <td>4.4K</td>
-                                    <td class="percentage">5.1%</td>
-                                    <td class="percentage">8.9%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Pharmacy</strong></td>
-                                    <td class="currency" data-revenue="3757571">₹3.8M</td>
-                                    <td>5.8K</td>
-                                    <td>4.4K</td>
-                                    <td class="percentage">4.5%</td>
-                                    <td class="percentage">7.5%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Toys</strong></td>
-                                    <td class="currency" data-revenue="1840266">₹1.8M</td>
-                                    <td>5.2K</td>
-                                    <td>4.3K</td>
-                                    <td class="percentage">2.2%</td>
-                                    <td class="percentage">6.7%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>HnW</strong></td>
-                                    <td class="currency" data-revenue="1446153">₹1.4M</td>
-                                    <td>3.0K</td>
-                                    <td>2.5K</td>
-                                    <td class="percentage">1.7%</td>
-                                    <td class="percentage">3.8%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Grooming Supplies</strong></td>
-                                    <td class="currency" data-revenue="1103278">₹1.1M</td>
-                                    <td>2.6K</td>
-                                    <td>2.3K</td>
-                                    <td class="percentage">1.3%</td>
-                                    <td class="percentage">3.4%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>CLH</strong></td>
-                                    <td class="currency" data-revenue="400">₹400K</td>
-                                    <td>781</td>
-                                    <td>742</td>
-                                    <td class="percentage">0.5%</td>
-                                    <td class="percentage">1.0%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>BMT</strong></td>
-                                    <td class="currency" data-revenue="400">₹400K</td>
-                                    <td>216</td>
-                                    <td>216</td>
-                                    <td class="percentage">0.4%</td>
-                                    <td class="percentage">0.3%</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="insight-text">
-                        <p><strong>📦 Cross-Category Opportunities:</strong> RC customers show strong category diversification beyond food. Cats Treats (12.6% penetration), Cats Litter (7.4% penetration), and Dog Treats (8.9% penetration) show highest add-on potential.</p>
-                        <p><strong>🎯 Health & Wellness:</strong> Pharmacy (7.5% penetration) and HnW (3.8% penetration) indicate RC customers prioritize pet health, creating opportunities for health-focused product partnerships.</p>
-                        <p><strong>🐾 Lifestyle Products:</strong> Toys (6.7% penetration) and Grooming Supplies (3.4% penetration) show RC customers invest in complete pet care, not just nutrition.</p>
-                    </div>
-                </div>
-                
-                <div class="two-column">
-                    <div class="insight-table">
-                        <h3>🏆 Top RC Customer Segments by Loyalty</h3>
-                        <div class="table-container">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Loyalty Category</th>
-                                        <th>Customers</th>
-                                        <th>Percentage</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>RC Exclusive (100%)</td>
-                                        <td>18,065</td>
-                                        <td class="percentage">33.81%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>RC Secondary (20-49%)</td>
-                                        <td>9,826</td>
-                                        <td class="percentage">18.39%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>RC Dominant (80-99%)</td>
-                                        <td>8,843</td>
-                                        <td class="percentage">16.55%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>RC Majority (50-79%)</td>
-                                        <td>8,889</td>
-                                        <td class="percentage">16.64%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>RC Minimal (<20%)</td>
-                                        <td>7,809</td>
-                                        <td class="percentage">14.61%</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    
-                    <div class="insight-table">
-                        <h3>🥇 Top Competing Brands</h3>
-                        <div class="table-container">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Brand</th>
-                                        <th>RC Customer Penetration</th>
-                                        <th>Revenue (₹ M)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Me O</td>
-                                        <td class="percentage">18.40%</td>
-                                        <td class="currency" data-revenue="53.8686065">₹53.9M</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Drools</td>
-                                        <td class="percentage">18.17%</td>
-                                        <td class="currency" data-revenue="23.033668375">₹23.0M</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sheba</td>
-                                        <td class="percentage">18.00%</td>
-                                        <td class="currency" data-revenue="139.4609235">₹139.5M</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Henlo</td>
-                                        <td class="percentage">15.84%</td>
-                                        <td class="currency" data-revenue="22.340387">₹22.3M</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Whiskas</td>
-                                        <td class="percentage">14.86%</td>
-                                        <td class="currency" data-revenue="87.571737">₹87.6M</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Pedigree</td>
-                                        <td class="percentage">14.60%</td>
-                                        <td class="currency" data-revenue="44.12302775">₹44.1M</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <!-- Buying Frequency Tab -->
+        <div id="frequency" class="tab-content">
+            <div class="section-header">
+                <h2>📊 Buying Frequency Analysis</h2>
+                <p>Understanding purchase patterns across different segments</p>
+            </div>
             
-            <!-- Buying Frequency Tab -->
-            <div id="frequency" class="tab-content">
-                <div class="section-header">
-                    <h2>📊 Buying Frequency Analysis</h2>
-                    <p>Understanding purchase patterns across different segments</p>
-                </div>
-                
-                <div class="two-column">
-                    <div class="insight-table">
-                        <h3>🎯 RC Frequency by Age Group</h3>
-                        <div class="table-container">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Age Category</th>
-                                        <th>Customers</th>
-                                        <th>Avg RC Orders</th>
-                                        <th>Frequency/Month</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Unknown</td>
-                                        <td>35,711</td>
-                                        <td>3.28</td>
-                                        <td class="percentage">1.03</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Adult (2-4 years)</td>
-                                        <td>12,526</td>
-                                        <td>5.45</td>
-                                        <td class="percentage">1.05</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mature (4-7 years)</td>
-                                        <td>8,607</td>
-                                        <td>7.39</td>
-                                        <td class="percentage">0.93</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Young Adult (1-2 years)</td>
-                                        <td>4,607</td>
-                                        <td>3.61</td>
-                                        <td class="percentage">1.38</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Senior (7+ years)</td>
-                                        <td>3,902</td>
-                                        <td>8.64</td>
-                                        <td class="percentage">0.99</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Puppy/Kitten (0-6 months)</td>
-                                        <td>465</td>
-                                        <td>2.11</td>
-                                        <td class="percentage">2.00</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    
-                    <div class="insight-table">
-                        <h3>🐕 RC Frequency by Species</h3>
-                        <div class="table-container">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Species</th>
-                                        <th>Customers</th>
-                                        <th>Avg RC Orders</th>
-                                        <th>Frequency/Month</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Cat</td>
-                                        <td>15,635</td>
-                                        <td>9.60</td>
-                                        <td class="percentage">1.50</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dog</td>
-                                        <td>22,631</td>
-                                        <td>3.94</td>
-                                        <td class="percentage">0.92</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Other</td>
-                                        <td>102</td>
-                                        <td>4.83</td>
-                                        <td class="percentage">1.04</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                
+            <div class="two-column">
                 <div class="insight-table">
-                    <h3>📊 RC Frequency by Age at Acquisition</h3>
+                    <h3>🎯 RC Frequency by Age Group</h3>
                     <div class="table-container">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Age at Acquisition</th>
+                                    <th>Age Category</th>
                                     <th>Customers</th>
                                     <th>Avg RC Orders</th>
                                     <th>Frequency/Month</th>
@@ -1459,37 +1359,37 @@
                                     <td>Unknown</td>
                                     <td>35,711</td>
                                     <td>3.28</td>
-                                    <td>1.03</td>
-                                </tr>
-                                <tr>
-                                    <td>Young Adult (1-2 years)</td>
-                                    <td>9,416</td>
-                                    <td>5.06</td>
-                                    <td>0.92</td>
-                                </tr>
-                                <tr>
-                                    <td>Puppy/Kitten (0-6 months)</td>
-                                    <td>8,364</td>
-                                    <td>5.84</td>
-                                    <td>1.09</td>
+                                    <td class="percentage">1.03</td>
                                 </tr>
                                 <tr>
                                     <td>Adult (2-4 years)</td>
-                                    <td>6,694</td>
-                                    <td>6.45</td>
-                                    <td>0.97</td>
+                                    <td>12,526</td>
+                                    <td>5.45</td>
+                                    <td class="percentage">1.05</td>
                                 </tr>
                                 <tr>
                                     <td>Mature (4-7 years)</td>
-                                    <td>3,607</td>
-                                    <td>7.13</td>
-                                    <td>1.00</td>
+                                    <td>8,607</td>
+                                    <td>7.39</td>
+                                    <td class="percentage">0.93</td>
+                                </tr>
+                                <tr>
+                                    <td>Young Adult (1-2 years)</td>
+                                    <td>4,607</td>
+                                    <td>3.61</td>
+                                    <td class="percentage">1.38</td>
                                 </tr>
                                 <tr>
                                     <td>Senior (7+ years)</td>
-                                    <td>2,414</td>
-                                    <td>7.39</td>
-                                    <td>0.99</td>
+                                    <td>3,902</td>
+                                    <td>8.64</td>
+                                    <td class="percentage">0.99</td>
+                                </tr>
+                                <tr>
+                                    <td>Puppy/Kitten (0-6 months)</td>
+                                    <td>465</td>
+                                    <td>2.11</td>
+                                    <td class="percentage">2.00</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1497,19 +1397,110 @@
                 </div>
                 
                 <div class="insight-table">
-                    <h3>🏙️ Top Cities by RC Customer Base & Market Share</h3>
+                    <h3>🐕 RC Frequency by Species</h3>
                     <div class="table-container">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>City</th>
-                                    <th>RC Customers</th>
-                                    <th>Customer Share</th>
+                                    <th>Species</th>
+                                    <th>Customers</th>
                                     <th>Avg RC Orders</th>
                                     <th>Frequency/Month</th>
-                                    <th>RC Lifetime (Days)</th>
                                 </tr>
                             </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cat</td>
+                                    <td>15,635</td>
+                                    <td>9.60</td>
+                                    <td class="percentage">1.50</td>
+                                </tr>
+                                <tr>
+                                    <td>Dog</td>
+                                    <td>22,631</td>
+                                    <td>3.94</td>
+                                    <td class="percentage">0.92</td>
+                                </tr>
+                                <tr>
+                                    <td>Other</td>
+                                    <td>102</td>
+                                    <td>4.83</td>
+                                    <td class="percentage">1.04</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="insight-table">
+                <h3>📊 RC Frequency by Age at Acquisition</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Age at Acquisition</th>
+                                <th>Customers</th>
+                                <th>Avg RC Orders</th>
+                                <th>Frequency/Month</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Unknown</td>
+                                <td>35,711</td>
+                                <td>3.28</td>
+                                <td>1.03</td>
+                            </tr>
+                            <tr>
+                                <td>Young Adult (1-2 years)</td>
+                                <td>9,416</td>
+                                <td>5.06</td>
+                                <td>0.92</td>
+                            </tr>
+                            <tr>
+                                <td>Puppy/Kitten (0-6 months)</td>
+                                <td>8,364</td>
+                                <td>5.84</td>
+                                <td>1.09</td>
+                            </tr>
+                            <tr>
+                                <td>Adult (2-4 years)</td>
+                                <td>6,694</td>
+                                <td>6.45</td>
+                                <td>0.97</td>
+                            </tr>
+                            <tr>
+                                <td>Mature (4-7 years)</td>
+                                <td>3,607</td>
+                                <td>7.13</td>
+                                <td>1.00</td>
+                            </tr>
+                            <tr>
+                                <td>Senior (7+ years)</td>
+                                <td>2,414</td>
+                                <td>7.39</td>
+                                <td>0.99</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="insight-table">
+                <h3>🏙️ Top Cities by RC Customer Base & Market Share</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>City</th>
+                                <th>RC Customers</th>
+                                <th>Customer Share</th>
+                                <th>Avg RC Orders</th>
+                                <th>Frequency/Month</th>
+                                <th>RC Lifetime (Days)</th>
+                            </tr>
+                        </thead>
                                                     <tbody>
                                 <tr>
                                     <td>Bangalore</td>
@@ -2011,8 +2002,8 @@
                 </div>
                 <div class="insight-text">
                     <p><strong>🏆 Breed Revenue Leaders:</strong> Persian cats dominate with ₹55.4M (35.7% of breed revenue), followed by Golden Retriever (₹17.5M, 11.3%) and Labrador Retriever (₹13.8M, 8.9%).</p>
-                    <p><strong>💰 Premium Breed Insights:</strong> Rottweiler shows highest AOV (₹4,199), followed by Dobermann (₹4,766) and German Shepherd (₹3,887). Large dog breeds consistently show premium pricing acceptance.</p>
-                    <p><strong>📊 Market Concentration:</strong> Top 5 breeds contribute 71.6% of total breed revenue, with clear cat dominance (Persian) and strong large dog breed performance.</p>
+                    <p><strong💰 Premium Breed Insights:</strong> Rottweiler shows highest AOV (₹4,199), followed by Dobermann (₹4,766) and German Shepherd (₹3,887). Large dog breeds consistently show premium pricing acceptance.</p>
+                    <p><strong📊 Market Concentration:</strong> Top 5 breeds contribute 71.6% of total breed revenue, with clear cat dominance (Persian) and strong large dog breed performance.</p>
                 </div>
             </div>
         </div>
@@ -3032,45 +3023,45 @@
                 <h2>📊 Data Quality & Completeness</h2>
                 <p>RC customer data completeness and distribution analysis</p>
             </div>
-
+            
             <div class="two-column">
                 <div class="insight-table">
                     <h3>🔥 Data Completeness Heatmap</h3>
                     <div class="heatmap-container">
-                        <div class="heatmap-grid">
+                                            <div class="heatmap-grid">
                             <div class="heatmap-cell excellent" data-tooltip="Species: 89.2%">
-                                <div class="field-name">Species</div>
+                            <div class="field-name">Species</div>
                                 <div class="field-value">89%</div>
-                            </div>
-                            <div class="heatmap-cell excellent" data-tooltip="Pet Name: 89.4%">
-                                <div class="field-name">Pet Name</div>
-                                <div class="field-value">89%</div>
-                            </div>
-                            <div class="heatmap-cell good" data-tooltip="Age/DOB: 61.5%">
-                                <div class="field-name">Age/DOB</div>
-                                <div class="field-value">62%</div>
-                            </div>
-                            <div class="heatmap-cell poor" data-tooltip="Breed: 59.1%">
-                                <div class="field-name">Breed</div>
-                                <div class="field-value">59%</div>
-                            </div>
-                            <div class="heatmap-cell good" data-tooltip="Lifestage: 61.2%">
-                                <div class="field-name">Lifestage</div>
-                                <div class="field-value">61%</div>
-                            </div>
-                            <div class="heatmap-cell poor" data-tooltip="Gender: 38.0%">
-                                <div class="field-name">Gender</div>
-                                <div class="field-value">38%</div>
-                            </div>
-                            <div class="heatmap-cell poor" data-tooltip="Dietary: 57.3%">
-                                <div class="field-name">Dietary</div>
-                                <div class="field-value">57%</div>
-                            </div>
-                            <div class="heatmap-cell poor" data-tooltip="Health: 4.7%">
-                                <div class="field-name">Health</div>
-                                <div class="field-value">5%</div>
-                            </div>
                         </div>
+                            <div class="heatmap-cell excellent" data-tooltip="Pet Name: 89.4%">
+                            <div class="field-name">Pet Name</div>
+                                <div class="field-value">89%</div>
+                        </div>
+                            <div class="heatmap-cell good" data-tooltip="Age/DOB: 61.5%">
+                            <div class="field-name">Age/DOB</div>
+                                <div class="field-value">62%</div>
+                        </div>
+                            <div class="heatmap-cell poor" data-tooltip="Breed: 59.1%">
+                            <div class="field-name">Breed</div>
+                                <div class="field-value">59%</div>
+                        </div>
+                            <div class="heatmap-cell good" data-tooltip="Lifestage: 61.2%">
+                            <div class="field-name">Lifestage</div>
+                                <div class="field-value">61%</div>
+                        </div>
+                            <div class="heatmap-cell poor" data-tooltip="Gender: 38.0%">
+                            <div class="field-name">Gender</div>
+                                <div class="field-value">38%</div>
+                        </div>
+                            <div class="heatmap-cell poor" data-tooltip="Dietary: 57.3%">
+                            <div class="field-name">Dietary</div>
+                                <div class="field-value">57%</div>
+                        </div>
+                            <div class="heatmap-cell poor" data-tooltip="Health: 4.7%">
+                            <div class="field-name">Health</div>
+                            <div class="field-value">5%</div>
+                        </div>
+                    </div>
                         <div class="heatmap-legend">
                             <div class="legend-item">
                                 <div class="legend-color excellent"></div>
@@ -3087,7 +3078,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="insight-table">
                     <h3>🐾 Top Breeds by Customer Count</h3>
                     <div class="table-container">
@@ -3129,8 +3120,8 @@
                         </table>
                     </div>
                     <div class="insight-text">
-                        <p><strong>🐾 Breed Insights:</strong> Persian cats dominate the breed distribution at 32.9%, followed by popular dog breeds like Shihtzu (11.6%) and Golden Retriever (11.0%).</p>
-                        <p><strong>📊 Data Quality:</strong> 66.2% of customers have breed information, with cats showing higher breed identification rates than dogs.</p>
+                        <p><strong🐾 Breed Insights:</strong> Persian cats dominate the breed distribution at 32.9%, followed by popular dog breeds like Shihtzu (11.6%) and Golden Retriever (11.0%).</p>
+                        <p><strong📊 Data Quality:</strong> 66.2% of customers have breed information, with cats showing higher breed identification rates than dogs.</p>
                     </div>
                 </div>
             </div>
@@ -3165,41 +3156,41 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
                 </div>
-
-                <div class="insight-table">
+            </div>
+            
+            <div class="insight-table">
                     <h3>🍽️ Dietary Preferences</h3>
-                    <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
                                     <th>Dietary Behavior</th>
-                                    <th>Customers</th>
+                                <th>Customers</th>
                                     <th>Percentage</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
                                     <td>Commercial Food</td>
                                     <td>26,299</td>
                                     <td class="percentage">81.4%</td>
-                                </tr>
-                                <tr>
+                            </tr>
+                            <tr>
                                     <td>Mixed</td>
                                     <td>5,981</td>
                                     <td class="percentage">18.6%</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="insight-text">
-                        <p><strong>🍽️ Dietary Insights:</strong> 81.4% of customers with dietary data prefer commercial food, aligning well with Royal Canin's product positioning.</p>
-                        <p><strong>📊 Data Coverage:</strong> 64.2% of customers have dietary behavior information, providing good insights into feeding preferences.</p>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="insight-text">
+                        <p><strong🍽️ Dietary Insights:</strong> 81.4% of customers with dietary data prefer commercial food, aligning well with Royal Canin's product positioning.</p>
+                        <p><strong📊 Data Coverage:</strong> 64.2% of customers have dietary behavior information, providing good insights into feeding preferences.</p>
                     </div>
                 </div>
             </div>
-
+            
             <div class="insight-table">
                 <h3>🎂 Age Distribution (With Complete Data)</h3>
                 <div class="table-container">
@@ -3241,7 +3232,7 @@
                     </table>
                 </div>
                 <div class="insight-text">
-                    <p><strong>📊 Age Data Completeness:</strong> 68.8% of RC customers (34,644 out of 50,323 with profiles) have age data.</p>
+                    <p><strong📊 Age Data Completeness:</strong> 68.8% of RC customers (34,644 out of 50,323 with profiles) have age data.</p>
                     <p><strong🎯 Age Distribution Insights:</strong> Adult pets (2-4 years) represent the largest segment at 41.5%, indicating a mature pet population with established feeding patterns.</p>
                 </div>
             </div>
@@ -3256,7 +3247,7 @@
                             <canvas id="dataQualityChart" width="300" height="200"></canvas>
                         </div>
                         <div class="insight-text">
-                            <p><strong>📊 Visual Analysis:</strong> The heatmap and progress bars provide instant visual feedback on data quality across all fields.</p>
+                            <p><strong📊 Visual Analysis:</strong> The heatmap and progress bars provide instant visual feedback on data quality across all fields.</p>
                             <p><strong🎯 Action Items:</strong> Focus on improving Health Condition and Gender data collection to reach industry standards.</p>
                         </div>
                     </div>
